@@ -29,6 +29,18 @@ public class ActionServlet extends HttpServlet {
     private final Gson gson = new Gson();
     AuthentificationService authentificationService = new AuthentificationService();
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        JpaUtil.init();
+    }
+    
+    @Override
+    public void destroy(){
+        JpaUtil.destroy();
+        super.destroy();
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
