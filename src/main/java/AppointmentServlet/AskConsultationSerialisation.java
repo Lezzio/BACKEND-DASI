@@ -5,6 +5,8 @@
  */
 package AppointmentServlet;
 import Abstract.Serialisation;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +23,17 @@ public class AskConsultationSerialisation extends Serialisation {
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
     JsonObject container = new JsonObject();
-    }
     
-    // Lecture des Attributs de la requête (stoqué par action)
+    // Lecture des attributs de la requête (stockés par action)
+    String appointment = (String)request.getAttribute("Consultation");
+    
+    // Ajout de propriétés au conteneur JSON
+    container.addProperty("Consultation", appointment);
+    
+    // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
+    PrintWriter out = this.getWriter(response);
+    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+    gson.toJson(container, out);
+    out.close();
+    }
 }

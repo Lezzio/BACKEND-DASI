@@ -5,6 +5,10 @@
  */
 package com.mycompany.mavenproject1;
 
+import Abstract.Action;
+import Abstract.Serialisation;
+import AppointmentServlet.AskConsultationAction;
+import AppointmentServlet.AskConsultationSerialisation;
 import com.google.gson.Gson;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Client;
@@ -28,18 +32,6 @@ public class ActionServlet extends HttpServlet {
 
     private final Gson gson = new Gson();
     AuthentificationService authentificationService = new AuthentificationService();
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        JpaUtil.init();
-    }
-    
-    @Override
-    public void destroy(){
-        JpaUtil.destroy();
-        super.destroy();
-    }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,6 +52,9 @@ public class ActionServlet extends HttpServlet {
 
         System.out.println("Todo = " + todo);
 
+        Action action = null;
+        Serialisation serialisation = null;
+        
         switch (todo) {
             case "connecter":
                 System.out.println("Call connecter servlet");
@@ -67,6 +62,11 @@ public class ActionServlet extends HttpServlet {
                 break;
             case "inscrire":
                 System.out.println("Call inscrire servlet");
+                break;
+            case "askAppointment":
+                System.out.println("Call AskConsultation servlet");
+                action = new AskConsultationAction();
+                serialisation = new AskConsultationSerialisation();
                 break;
             default:
                 System.out.println("Invalid Todo : " + todo);
