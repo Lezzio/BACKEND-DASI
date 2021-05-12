@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ActionServlet", urlPatterns = {"/ActionServlet"})
 public class ActionServlet extends HttpServlet {
-    
+
     private final Gson gson = new Gson();
     AuthentificationService authentificationService = new AuthentificationService();
 
@@ -41,52 +41,67 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession(true);
-                
+
         String todo = request.getParameter("todo");
-        
+
         System.out.println("Todo = " + todo);
-        if(todo.equals("connecter")) {
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
-            
-            Client client = authentificationService.authentificateClient(login, password);
-            System.out.println("Client = " + client);
-            if(client != null) {
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                PrintWriter out = response.getWriter();
-                String clientJson = gson.toJson(client);
-                out.print("{");
-                out.println("\"connexion\": true,");
-                out.print("\"client\": ");
-                out.print(clientJson);
-                out.println("}");
-                out.flush();
-            } else {
-                
-            }
-            session.setAttribute("user", login);
-            
+
+        switch (todo) {
+            case "connecter":
+                System.out.println("Call connecter servlet");
+                connecter(request, response, session);
+                break;
+            case "inscrire":
+                System.out.println("Call inscrire servlet");
+                break;
+            default:
+                System.out.println("Invalid Todo : " + todo);
+                break;
         }
-        System.out.println("Okayyy");
-        
+
     }
-    
-     @Override
-  public void init() throws ServletException {
-    super.init();
-    JpaUtil.init();
+
+    private void connecter(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+            throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+
+        Client client = authentificationService.authentificateClient(login, password);
+        System.out.println("Client = " + client);
+        if (client != null) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out = response.getWriter();
+            String clientJson = gson.toJson(client);
+            out.print("{");
+            out.println("\"connexion\": true,");
+            out.print("\"client\": ");
+            out.print(clientJson);
+            out.println("}");
+            out.flush();
+        } else {
+
+        }
+        session.setAttribute("user", login);
+
+        System.out.println("Okayyy");
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        JpaUtil.init();
         Client client1 = new Client("Lovelace", "Ada", "Mme", "ada.lovelace@insa-lyon.fr", "ada1", new Date(), "0668574620");
         authentificationService.signupClient(client1);
-  }
+    }
 
-  @Override
-  public void destroy() {
-    JpaUtil.destroy();
-    super.destroy();
-  }
+    @Override
+    public void destroy() {
+        JpaUtil.destroy();
+        super.destroy();
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
