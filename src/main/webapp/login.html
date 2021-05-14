@@ -1,35 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Connexion</title>
-        <!-- Librairie Javascript: jQuery (v3.4.1) -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <title>Predict'IF</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="resources/css/app.css">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="login.js"></script>
+</head>
+<body>
 
-        <h1>Connexion</h1>
+<div id="navbar">
+    <a>
+        <div class="button left">ACCUEIL</div>
+    </a>
+    <a href="signup.html">
+        <div class="button right">INSCRIPTION</div>
+    </a>
+</div>
 
-        <!-- Paragraphe avec id="notification" pour les messages de notification -->
-        <p id="notification">Veuillez saisir votre identifiant (adresse mail) et votre mot de passe.</p>
-        
-        <!-- Champs et Bouton de Formulaire -->
-        Identifiant: <input type="text" id="champ-login" size="40" />
-        <br/>
-        Mot de passe: <input type="password" id="champ-password" />
-        <br/>
-        <button id="bouton-connexion">Connexion</button>
-        
-        <!-- Lien vers l'accueil -->
-        <p><a href="index.html">Retour à la page d'Accueil</a></p>
+<div id="middle-container">
+    <p class="login-title">CONNEXION</p>
+    <div class="login-form">
+        <input type="text" id="mail" class="large-input" placeholder="Adresse email">
+        <input type="password" id="password" class="large-input" placeholder="Mot de passe">
+    </div>
+    <div class="switch-container">
+        <div id="switch-selector-client" class="switch-selector">
+            Client
+        </div>
 
-        <script>
-            $(document).ready( function () {
-                $('#bouton-connexion').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+        <div class="switch-groove">
+            <div id="switch-indicator" class="left"></div>
+        </div>
 
-                    console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
-                    $('#notification').html("Connexion..."); // Message pour le paragraphe de notification
+        <div id="switch-selector-employee" class="switch-selector">
+            Employé
+        </div>
+    </div>
+    <div id="login-button">CONNEXION</div>
+    <div class="login-footer">Pas encore inscrit ? <span>Inscrivez-vous</span> !</div>
+    <svg src="resources/images/gradient4.svg"/>
+</div>
 
+<<<<<<< HEAD
+</body>
+=======
                     // Récupération de la valeur des champs du formulaire
                     var champLogin = $('#champ-login').val();
                     var champPassword = $('#champ-password').val();
@@ -71,4 +87,5 @@
             });
         </script>
     </body>
+>>>>>>> origin/main
 </html>

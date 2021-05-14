@@ -9,10 +9,18 @@ import Abstract.Action;
 import Abstract.Serialisation;
 import AppointmentServlet.AskConsultationAction;
 import AppointmentServlet.AskConsultationSerialisation;
+import AuthentificationServlet.loginClientAction;
+import AuthentificationServlet.loginClientSerialisation;
+import AuthentificationServlet.loginEmployeeAction;
+import AuthentificationServlet.loginEmployeeSerialisation;
+import AuthentificationServlet.signupClientAction;
+import AuthentificationServlet.signupClientSerialisation;
 import com.google.gson.Gson;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -56,12 +64,27 @@ public class ActionServlet extends HttpServlet {
         Serialisation serialisation = null;
         
         switch (todo) {
-            case "connecter":
-                System.out.println("Call connecter servlet");
-                connecter(request, response, session);
+            case "signIn":
+                System.out.println("Call signIn servlet");
+                String userType = request.getParameter("userType");
+                switch(userType){
+                    case "Client":
+                        action = new loginClientAction();
+                        serialisation = new loginClientSerialisation();
+                        break;
+                    case "Employee":
+                        action = new loginEmployeeAction();
+                        serialisation = new loginEmployeeSerialisation();
+                        break;
+                    default:
+                        System.out.println("Error, neither Employee or Client for this selection : " + userType);
+                        break;                          
+                }
                 break;
-            case "inscrire":
-                System.out.println("Call inscrire servlet");
+            case "signUp":
+                System.out.println("Call signUp servlet");
+                action = new signupClientAction();
+                serialisation = new signupClientSerialisation();
                 break;
             case "askAppointment":
                 System.out.println("Call AskConsultation servlet");
@@ -72,34 +95,18 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Invalid Todo : " + todo);
                 break;
         }
-
-    }
-
-    private void connecter(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-            throws ServletException, IOException {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-
-        Client client = authentificationService.authentificateClient(login, password);
-        System.out.println("Client = " + client);
-        if (client != null) {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            PrintWriter out = response.getWriter();
-            String clientJson = gson.toJson(client);
-            out.print("{");
-            out.println("\"connexion\": true,");
-            out.print("\"client\": ");
-            out.print(clientJson);
-            out.println("}");
-            out.flush();
-        } else {
-
+        
+        if(action != null && serialisation != null){
+            action.executer(request);
+            serialisation.serialiser(request, response);
+        }else{
+            System.out.println("Error");
+            System.out.println("Action : " + action);
+            System.out.println("Serialisation : " + serialisation);
         }
-        session.setAttribute("user", login);
 
-        System.out.println("Okayyy");
     }
+
 
     @Override
     public void init() throws ServletException {
@@ -107,6 +114,8 @@ public class ActionServlet extends HttpServlet {
         JpaUtil.init();
         Client client1 = new Client("Lovelace", "Ada", "Mme", "ada.lovelace@insa-lyon.fr", "ada1", new Date(), "0668574620");
         authentificationService.signupClient(client1);
+        Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
+        authentificationService.signupEmployee(employee1);
     }
 
     @Override

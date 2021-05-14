@@ -1,0 +1,126 @@
+@use "commons";
+
+body {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../resources/images/gradient2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Microsoft Yi Baiti", "Verdana", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: white;
+}
+
+#navbar {
+  height: 100px;
+  padding-top: 10px;
+  width: 100%;
+
+  > a > .button {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 22px;
+    @extend %base-transition-duration;
+
+    &:hover {
+      @extend %base-transition-duration;
+      transform: scale(1.1);
+    }
+
+    &.left {
+      float: left;
+      margin-left: 40px;
+    }
+
+    &.right {
+      float: right;
+      margin-right: 80px;
+    }
+
+  }
+}
+
+#middle-container {
+  width: 600px;
+  height: 600px;
+  padding-top: 120px;
+  margin: auto;
+
+  > .presentation-title {
+    width: fit-content;
+    font-size: 46px;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  > .presentation-content {
+    color: black;
+    width: fit-content;
+    margin: 100px auto 20px auto;
+    text-align: center;
+    font-size: 26px;
+
+    > .large-input {
+      text-align: center;
+      display: block;
+      padding: 5px;
+      width: 400px;
+      height: 1.2em;
+      font-size: 18px;
+      margin: 20px;
+      border: 0;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+
+  }
+
+  > #presentation-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    height: 34px;
+    margin: 50px auto;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #33AFA6;
+    border-radius: 32px;
+    cursor: pointer;
+
+    @extend %base-transition-duration;
+
+    &:hover {
+      @extend %base-transition-duration;
+      transform: scale(1.04);
+    }
+  }
+
+  > .presentation-footer {
+    width: fit-content;
+    margin: auto;
+
+    > span {
+      cursor: pointer;
+      font-weight: bold;
+      color: #AE76FF;
+      @extend %base-transition-duration;
+
+      &:hover {
+        @extend %base-transition-duration;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .medium-showcase {
+
+  }
+
+}
