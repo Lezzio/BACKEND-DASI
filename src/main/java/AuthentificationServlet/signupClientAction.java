@@ -33,10 +33,13 @@ public class signupClientAction extends Action{
         //Date birthDate = new SimpleDateFormat("yy-MM-dd").parse(request.getParameter("birthdate"));
         String phone = request.getParameter("phone");
         String dateString = request.getParameter("birthdate");
+        String city = request.getParameter("city");
+        String address = request.getParameter("address");
+        String zipCode = request.getParameter("zipCode");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
         try {
             Date birthDate = format.parse(dateString);
-            Client client = new Client(lastName, firstName, civility, mail, password, birthDate, phone);
+            Client client = new Client(lastName, firstName, civility, mail, password, birthDate, phone, address, city, zipCode);
             System.out.println("Client : " + client);
             Long id = authentificationService.signupClient(client);
             if(id != null){

@@ -15,6 +15,8 @@ import AuthentificationServlet.loginEmployeeAction;
 import AuthentificationServlet.loginEmployeeSerialisation;
 import AuthentificationServlet.signupClientAction;
 import AuthentificationServlet.signupClientSerialisation;
+import EntityServlet.getClientAction;
+import EntityServlet.getClientSerialisation;
 import com.google.gson.Gson;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Client;
@@ -86,6 +88,11 @@ public class ActionServlet extends HttpServlet {
                 action = new signupClientAction();
                 serialisation = new signupClientSerialisation();
                 break;
+            case "getClient":
+                System.out.println("Call getClient servlet");
+                action = new getClientAction();
+                serialisation = new getClientSerialisation();
+                break;
             case "askAppointment":
                 System.out.println("Call AskConsultation servlet");
                 action = new AskConsultationAction();
@@ -112,7 +119,7 @@ public class ActionServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         JpaUtil.init();
-        Client client1 = new Client("Lovelace", "Ada", "Mme", "ada.lovelace@insa-lyon.fr", "ada1", new Date(), "0668574620");
+        Client client1 = new Client("Lovelace", "Ada", "Mme", "ada.lovelace@insa-lyon.fr", "ada1", new Date(), "0668574620", "12 rue Poussin", "Davezieux" ,"07430");
         authentificationService.signupClient(client1);
         Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
         authentificationService.signupEmployee(employee1);
