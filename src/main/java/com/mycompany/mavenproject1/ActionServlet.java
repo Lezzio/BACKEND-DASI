@@ -9,18 +9,26 @@ import Abstract.Action;
 import Abstract.Serialisation;
 import AppointmentServlet.AskConsultationAction;
 import AppointmentServlet.AskConsultationSerialisation;
-import AuthentificationServlet.loginClientAction;
-import AuthentificationServlet.loginClientSerialisation;
-import AuthentificationServlet.loginEmployeeAction;
-import AuthentificationServlet.loginEmployeeSerialisation;
-import AuthentificationServlet.signupClientAction;
-import AuthentificationServlet.signupClientSerialisation;
-import EntityServlet.getClientAction;
-import EntityServlet.getClientSerialisation;
+import AuthentificationServlet.LoginClientAction;
+import AuthentificationServlet.LoginClientSerialisation;
+import AuthentificationServlet.LoginEmployeeAction;
+import AuthentificationServlet.LoginEmployeeSerialisation;
+import AuthentificationServlet.SignUpClientAction;
+import AuthentificationServlet.SignUpClientSerialisation;
+import EntityServlet.GetClientAction;
+import EntityServlet.GetClientSerialisation;
+import EntityServlet.GetEmployeeAction;
+import EntityServlet.GetEmployeeSerialisation;
+import StatsServlet.TopFiveMediumAction;
+import StatsServlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
+import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.dao.MediumDao;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
@@ -71,12 +79,12 @@ public class ActionServlet extends HttpServlet {
                 String userType = request.getParameter("userType");
                 switch(userType){
                     case "Client":
-                        action = new loginClientAction();
-                        serialisation = new loginClientSerialisation();
+                        action = new LoginClientAction();
+                        serialisation = new LoginClientSerialisation();
                         break;
                     case "Employee":
-                        action = new loginEmployeeAction();
-                        serialisation = new loginEmployeeSerialisation();
+                        action = new LoginEmployeeAction();
+                        serialisation = new LoginEmployeeSerialisation();
                         break;
                     default:
                         System.out.println("Error, neither Employee or Client for this selection : " + userType);
@@ -85,18 +93,28 @@ public class ActionServlet extends HttpServlet {
                 break;
             case "signUp":
                 System.out.println("Call signUp servlet");
-                action = new signupClientAction();
-                serialisation = new signupClientSerialisation();
+                action = new SignUpClientAction();
+                serialisation = new SignUpClientSerialisation();
                 break;
             case "getClient":
                 System.out.println("Call getClient servlet");
-                action = new getClientAction();
-                serialisation = new getClientSerialisation();
+                action = new GetClientAction();
+                serialisation = new GetClientSerialisation();
+                break;
+            case "getEmployee":
+                System.out.println("Call getEmployee servlet");
+                action = new GetEmployeeAction();
+                serialisation = new GetEmployeeSerialisation();
                 break;
             case "askAppointment":
                 System.out.println("Call AskConsultation servlet");
                 action = new AskConsultationAction();
                 serialisation = new AskConsultationSerialisation();
+                break;
+            case "topFiveMediums":
+                System.out.println("Call topFiveMediums servlet");
+                action = new TopFiveMediumAction();
+                serialisation = new TopFiveMediumSerialisation();
                 break;
             default:
                 System.out.println("Invalid Todo : " + todo);
@@ -123,6 +141,28 @@ public class ActionServlet extends HttpServlet {
         authentificationService.signupClient(client1);
         Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
         authentificationService.signupEmployee(employee1);
+        Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835", "12 rue Poussin", "Davezieux", "07430");
+        Medium medium = new Medium("Medium test", "Test", Gender.OTHER);
+        Employee employee = new Employee(Gender.MALE, "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
+        Date startDate = new Date();
+        Date endDate = new Date();
+        Consultation consultation1 = new Consultation(startDate, endDate, "Très bonne séance", client, medium, employee);
+        Consultation consultation2 = new Consultation(startDate, endDate, "Séance intéressante", client, medium, employee);
+        
+        authentificationService.signupClient(client);
+        authentificationService.signupEmployee(employee);
+        ConsultationDao consultationDao = new ConsultationDao();
+        MediumDao mediumDao = new MediumDao();
+        try {
+        JpaUtil.creerContextePersistance();
+        JpaUtil.ouvrirTransaction();
+        mediumDao.create(medium);
+        consultationDao.create(consultation1);
+        consultationDao.create(consultation2);
+        JpaUtil.validerTransaction();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

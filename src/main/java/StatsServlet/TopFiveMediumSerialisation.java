@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class TopFiveSerialisation extends Serialisation{
+public class TopFiveMediumSerialisation extends Serialisation{
     
     private final Gson gson = new Gson();
     
