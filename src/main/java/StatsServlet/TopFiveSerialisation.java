@@ -24,36 +24,37 @@ public class TopFiveSerialisation extends Serialisation{
     
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*
-        List<Medium> listMedium = (List<Medium>)request.getAttribute("mapConsultationByMedium");
+        
+        Map<String, Integer> mapTopFiveMedium = (Map<String, Integer>)request.getAttribute("mapTopFiveMedium");
         PrintWriter out = response.getWriter();
         System.out.println("On affiche le nombre de consultation par médium");
-        if (mapConsultationByMedium != null) {
+        if (mapTopFiveMedium != null) {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             
-            JsonArray jsonListeMediumConsultation = new JsonArray () ;
-            for (Map.Entry mapentry : mapConsultationByMedium.entrySet()) {
+            JsonArray jsonListeMedium = new JsonArray () ;
+            for (Map.Entry mapentry : mapTopFiveMedium.entrySet()) {
                 JsonObject jsonMedium = new JsonObject();
-                jsonMedium.addProperty("NomMedium", (String) mapentry.getKey());
-                jsonMedium.addProperty("NombreConsultation", (Number) mapentry.getValue());
-                jsonListeMediumConsultation.add(jsonMedium);
+                jsonMedium.addProperty("Nom", (String) mapentry.getKey());
+                jsonMedium.addProperty("NombreClientUnique", (Number) mapentry.getValue());
+                jsonListeMedium.add(jsonMedium);
             }
-            String listeMediumConsultation = gson.toJson(jsonListeMediumConsultation);
+            
+            String listeMedium = gson.toJson(jsonListeMedium);
             out.print("{");
-            out.println("\"statsNonVide\": true,");
-            out.print("\"listeMediumConsultation\": ");
-            out.print(listeMediumConsultation);
+            out.println("\"statsTopFiveMediumNonVide\": true,");
+            out.print("\"listeMedium\": ");
+            out.print(listeMedium);
             out.println("}");
             out.flush();
         }
         else
         {
             out.print("{");
-            out.println("\"statsNonVide\": false,");
+            out.println("\"statsTopFiveMediumNonVide\": false,");
             out.println("}");
             out.flush();
         }
-        System.out.println("On est au bout");*/
+        System.out.println("On est au bout");
     }
 }

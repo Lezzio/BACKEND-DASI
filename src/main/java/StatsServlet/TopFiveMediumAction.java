@@ -30,10 +30,10 @@ public class TopFiveMediumAction extends Action{
         StatsService statsService = new StatsService();
 
         // Appel des Services Métiers (= méthodes de la classe de Service)
-        List<Medium> listMedium = statsService.topFiveMedium();
+        Map<String, Integer> mapTopFiveMedium = statsService.topFiveMedium();
 
         // Stockage des Résultats dans les Attributs de la Requête
-        request.setAttribute("listMedium", listMedium);
+        request.setAttribute("mapTopFiveMedium", mapTopFiveMedium);
         
     }
         
