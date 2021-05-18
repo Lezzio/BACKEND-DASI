@@ -28,10 +28,7 @@ public class AskConsultationSerialisation extends Serialisation {
     
     JsonObject container = new JsonObject();
     if(appointment != null)
-    {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        
+    {    
         // Ajout de propriétés au conteneur JSON
         container.addProperty("Consultation", String.valueOf(appointment.getId()));
         container.addProperty("StartDate", String.valueOf(appointment.getStartDate()));
