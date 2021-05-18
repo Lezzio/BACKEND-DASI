@@ -23,6 +23,8 @@ import EntityServlet.GetClientAction;
 import EntityServlet.GetClientSerialisation;
 import EntityServlet.GetEmployeeAction;
 import EntityServlet.GetEmployeeSerialisation;
+import EntityServlet.GetListMediumsAction;
+import EntityServlet.GetListMediumsSerialisation;
 import StatsServlet.TopFiveMediumAction;
 import StatsServlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
@@ -33,6 +35,7 @@ import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
+import com.mycompany.td2.dasi.metier.modele.Spirite;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.utils.Gender;
@@ -131,6 +134,11 @@ public class ActionServlet extends HttpServlet {
                 action = new GetClientHistoryAction();
                 serialisation = new GetClientHistorySerialisation();
                 break;
+            case "listMediums":
+                System.out.println("Call listMediums servlet");
+                action = new GetListMediumsAction();
+                serialisation = new GetListMediumsSerialisation();
+                break;
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;
@@ -146,7 +154,7 @@ public class ActionServlet extends HttpServlet {
         }
 
     }
-
+    
 
     @Override
     public void init() throws ServletException {
@@ -157,7 +165,7 @@ public class ActionServlet extends HttpServlet {
         Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
         authentificationService.signupEmployee(employee1);
         Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835", "12 rue Poussin", "Davezieux", "07430");
-        Medium medium = new Medium("Medium test", "Test", Gender.OTHER);
+        Spirite medium = new Spirite("Medium test", "Test", Gender.OTHER, "Le support ici trop bien");
         Employee employee = new Employee(Gender.MALE, "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
         Date startDate = new Date();
         Date endDate = new Date();
@@ -168,6 +176,7 @@ public class ActionServlet extends HttpServlet {
         authentificationService.signupEmployee(employee);
         ConsultationDao consultationDao = new ConsultationDao();
         MediumDao mediumDao = new MediumDao();
+        
         try {
         JpaUtil.creerContextePersistance();
         JpaUtil.ouvrirTransaction();
