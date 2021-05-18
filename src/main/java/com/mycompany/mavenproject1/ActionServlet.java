@@ -11,18 +11,18 @@ import AppointmentServlet.AskConsultationAction;
 import AppointmentServlet.AskConsultationSerialisation;
 import AppointmentServlet.EmployeeActiveConsultationAction;
 import AppointmentServlet.EmployeeActiveConsultationSerialisation;
-import AppointmentServlet.PredictionsClientAction;
-import AppointmentServlet.PredictionsClientSerialisation;
+import AppointmentServlet.GetClientHistoryAction;
+import AppointmentServlet.GetClientHistorySerialisation;
 import AuthentificationServlet.loginClientAction;
 import AuthentificationServlet.loginClientSerialisation;
 import AuthentificationServlet.loginEmployeeAction;
 import AuthentificationServlet.loginEmployeeSerialisation;
 import AuthentificationServlet.signupClientAction;
 import AuthentificationServlet.signupClientSerialisation;
-import EntityServlet.GetEmployeeAction;
-import EntityServlet.GetEmployeeSerialisation;
 import EntityServlet.getClientAction;
 import EntityServlet.getClientSerialisation;
+import EntityServlet.GetEmployeeAction;
+import EntityServlet.GetEmployeeSerialisation;
 import StatsServlet.TopFiveMediumAction;
 import StatsServlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
@@ -33,8 +33,11 @@ import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
+import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +55,7 @@ public class ActionServlet extends HttpServlet {
 
     private final Gson gson = new Gson();
     AuthentificationService authentificationService = new AuthentificationService();
+    AppointmentService appointmentService = new AppointmentService();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,7 +80,6 @@ public class ActionServlet extends HttpServlet {
         Serialisation serialisation = null;
         
         switch (todo) {
-            // Service d'identification
             case "signIn":
                 System.out.println("Call signIn servlet");
                 String userType = request.getParameter("userType");
@@ -109,29 +112,25 @@ public class ActionServlet extends HttpServlet {
                 action = new GetEmployeeAction();
                 serialisation = new GetEmployeeSerialisation();
                 break;
-                
-            // Service de Consultation
             case "askAppointment":
                 System.out.println("Call AskConsultation servlet");
                 action = new AskConsultationAction();
                 serialisation = new AskConsultationSerialisation();
                 break;
-            case "getEmployeeActiveConsultation":
-                System.out.println("Call EmployeeActiveConsultation servlet");
-                action = new EmployeeActiveConsultationAction();
-                serialisation = new EmployeeActiveConsultationSerialisation();
-                break;
-            case "getPredicitionForClient":
-                System.out.println("Call PredictionsClient servlet");
-                action = new PredictionsClientAction();
-                serialisation = new PredictionsClientSerialisation();
-                break;
-                
-            // Service de Stats
             case "topFiveMediums":
                 System.out.println("Call topFiveMediums servlet");
                 action = new TopFiveMediumAction();
                 serialisation = new TopFiveMediumSerialisation();
+                break;
+            case "fetchActiveConsultation":
+                System.out.println("Call fetchActiveConsultation servlet");
+                action = new EmployeeActiveConsultationAction();
+                serialisation = new EmployeeActiveConsultationSerialisation();
+                break;
+            case "getClientHistory":
+                System.out.println("Call fetchActiveConsultation servlet");
+                action = new GetClientHistoryAction();
+                serialisation = new GetClientHistorySerialisation();
                 break;
             default:
                 System.out.println("Invalid Todo : " + todo);
@@ -163,7 +162,7 @@ public class ActionServlet extends HttpServlet {
         Employee employee = new Employee(Gender.MALE, "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
         Date startDate = new Date();
         Date endDate = new Date();
-        Consultation consultation1 = new Consultation(startDate, endDate, "Très bonne séance", client, medium, employee);
+        Consultation consultation1 = new Consultation(null, null, "Très bonne séance", client, medium, employee);
         Consultation consultation2 = new Consultation(startDate, endDate, "Séance intéressante", client, medium, employee);
         
         authentificationService.signupClient(client);
@@ -174,12 +173,14 @@ public class ActionServlet extends HttpServlet {
         JpaUtil.creerContextePersistance();
         JpaUtil.ouvrirTransaction();
         mediumDao.create(medium);
-        consultationDao.create(consultation1);
-        consultationDao.create(consultation2);
+        Long consultationId = appointmentService.askConsultation(client1, medium);
+        //consultationDao.create(consultation1);
+        //consultationDao.create(consultation2);
         JpaUtil.validerTransaction();
         } catch(Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     @Override
