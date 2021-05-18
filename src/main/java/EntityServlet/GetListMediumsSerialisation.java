@@ -7,11 +7,10 @@ package EntityServlet;
 
 import Abstract.Serialisation;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Astrolog;
-import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Cartomancian;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.modele.Spirite;
 import java.io.IOException;
@@ -35,13 +34,18 @@ public class GetListMediumsSerialisation extends Serialisation{
         for (Medium medium : listMediums){
             JsonObject jsonMedium = new JsonObject();
             jsonMedium.addProperty("name", medium.getName());
+            jsonMedium.addProperty("id", medium.getId());
             jsonMedium.addProperty("presentation", medium.getPresentation());
             if(medium instanceof Astrolog){
                 Astrolog astrolog = (Astrolog) medium;
+                jsonMedium.addProperty("type", "astrolog");
                 jsonMedium.addProperty("formation", astrolog.getFormation());
                 jsonMedium.addProperty("promotion", astrolog.getPromotion());
+            } else if(medium instanceof Cartomancian) {
+                jsonMedium.addProperty("type", "cartomancian");
             } else if(medium instanceof Spirite){
                 Spirite spirite = (Spirite) medium;
+                jsonMedium.addProperty("type", "spirite");
                 jsonMedium.addProperty("support", spirite.getSupport());
             }
             jsonArray.add(jsonMedium);

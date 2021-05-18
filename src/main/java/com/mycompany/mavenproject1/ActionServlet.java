@@ -31,6 +31,8 @@ import com.google.gson.Gson;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.dao.MediumDao;
+import com.mycompany.td2.dasi.metier.modele.Astrolog;
+import com.mycompany.td2.dasi.metier.modele.Cartomancian;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
@@ -165,12 +167,14 @@ public class ActionServlet extends HttpServlet {
         Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
         authentificationService.signupEmployee(employee1);
         Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835", "12 rue Poussin", "Davezieux", "07430");
-        Spirite medium = new Spirite("Medium test", "Test", Gender.OTHER, "Le support ici trop bien");
+        Spirite spirite = new Spirite("Votre avenir est devant vous : regardons-le ensemble !", "Test", Gender.MALE, "Le support ici trop bien trop bien wesh");
+        Cartomancian carto = new Cartomancian("Votre avenir est devant vous : regardons-le ensemble !", "Test", Gender.OTHER);
+        Astrolog astrolog = new Astrolog("Basée à Champigny-sur-Marne, Serena vous révèle votre avenir pour éclairer votre passé", "Serena", Gender.FEMALE, "Institut National des Astrologues SUP", "2010");
         Employee employee = new Employee(Gender.MALE, "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
         Date startDate = new Date();
         Date endDate = new Date();
-        Consultation consultation1 = new Consultation(null, null, "Très bonne séance", client, medium, employee);
-        Consultation consultation2 = new Consultation(startDate, endDate, "Séance intéressante", client, medium, employee);
+        Consultation consultation1 = new Consultation(null, null, "Très bonne séance", client, spirite, employee);
+        Consultation consultation2 = new Consultation(startDate, endDate, "Séance intéressante", client, spirite, employee);
         
         authentificationService.signupClient(client);
         authentificationService.signupEmployee(employee);
@@ -180,8 +184,9 @@ public class ActionServlet extends HttpServlet {
         try {
         JpaUtil.creerContextePersistance();
         JpaUtil.ouvrirTransaction();
-        mediumDao.create(medium);
-        Long consultationId = appointmentService.askConsultation(client1, medium);
+        mediumDao.create(spirite);
+        mediumDao.create(carto);
+        mediumDao.create(astrolog);
         //consultationDao.create(consultation1);
         //consultationDao.create(consultation2);
         JpaUtil.validerTransaction();
