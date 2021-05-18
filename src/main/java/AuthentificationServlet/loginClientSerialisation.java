@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aurélien
  */
-public class loginClientSerialisation extends Serialisation{
+public class LoginClientSerialisation extends Serialisation{
     private final Gson gson = new Gson();
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {

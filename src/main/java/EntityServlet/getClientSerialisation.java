@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aurélien
  */
-public class getClientSerialisation extends Serialisation{
+public class GetClientSerialisation extends Serialisation{
     private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Aurélien
  */
-public class getClientAction extends Action{
+public class GetClientAction extends Action{
     EntityService entityService = new EntityService();
     @Override
     public void executer(HttpServletRequest request) {

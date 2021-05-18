@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Aurélien
  */
-public class loginClientAction extends Action {
+public class LoginClientAction extends Action {
     AuthentificationService authentificationService = new AuthentificationService();
     @Override
     public void executer(HttpServletRequest request) {

@@ -13,14 +13,14 @@ import AppointmentServlet.EmployeeActiveConsultationAction;
 import AppointmentServlet.EmployeeActiveConsultationSerialisation;
 import AppointmentServlet.GetClientHistoryAction;
 import AppointmentServlet.GetClientHistorySerialisation;
-import AuthentificationServlet.loginClientAction;
-import AuthentificationServlet.loginClientSerialisation;
-import AuthentificationServlet.loginEmployeeAction;
-import AuthentificationServlet.loginEmployeeSerialisation;
-import AuthentificationServlet.signupClientAction;
-import AuthentificationServlet.signupClientSerialisation;
-import EntityServlet.getClientAction;
-import EntityServlet.getClientSerialisation;
+import AuthentificationServlet.LoginClientAction;
+import AuthentificationServlet.LoginClientSerialisation;
+import AuthentificationServlet.LoginEmployeeAction;
+import AuthentificationServlet.LoginEmployeeSerialisation;
+import AuthentificationServlet.SignupClientAction;
+import AuthentificationServlet.SignupClientSerialisation;
+import EntityServlet.GetClientAction;
+import EntityServlet.GetClientSerialisation;
 import EntityServlet.GetEmployeeAction;
 import EntityServlet.GetEmployeeSerialisation;
 import StatsServlet.TopFiveMediumAction;
@@ -37,7 +37,6 @@ import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -85,12 +84,12 @@ public class ActionServlet extends HttpServlet {
                 String userType = request.getParameter("userType");
                 switch(userType){
                     case "Client":
-                        action = new loginClientAction();
-                        serialisation = new loginClientSerialisation();
+                        action = new LoginClientAction();
+                        serialisation = new LoginClientSerialisation();
                         break;
                     case "Employee":
-                        action = new loginEmployeeAction();
-                        serialisation = new loginEmployeeSerialisation();
+                        action = new LoginEmployeeAction();
+                        serialisation = new LoginEmployeeSerialisation();
                         break;
                     default:
                         System.out.println("Error, neither Employee or Client for this selection : " + userType);
@@ -99,13 +98,13 @@ public class ActionServlet extends HttpServlet {
                 break;
             case "signUp":
                 System.out.println("Call signUp servlet");
-                action = new signupClientAction();
-                serialisation = new signupClientSerialisation();
+                action = new SignupClientAction();
+                serialisation = new SignupClientSerialisation();
                 break;
             case "getClient":
                 System.out.println("Call getClient servlet");
-                action = new getClientAction();
-                serialisation = new getClientSerialisation();
+                action = new GetClientAction();
+                serialisation = new GetClientSerialisation();
                 break;
             case "getEmployee":
                 System.out.println("Call getEmployee servlet");

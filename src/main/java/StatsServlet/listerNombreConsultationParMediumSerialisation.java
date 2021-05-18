@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maxim
  */
-public class listerNombreConsultationParMediumSerialisation extends Serialisation{
+public class ListerNombreConsultationParMediumSerialisation extends Serialisation{
     
     private final Gson gson = new Gson();
     

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author maxim
  */
 
-public class listerNombreConsultationParMediumAction extends Action {
+public class ListerNombreConsultationParMediumAction extends Action {
    
     private final Gson gson = new Gson();
     StatsService statsService = new StatsService();

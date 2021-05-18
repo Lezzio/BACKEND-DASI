@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Aurélien
  */
-public class loginEmployeeAction extends Action{
+public class LoginEmployeeAction extends Action{
     AuthentificationService authentificationService = new AuthentificationService();
     @Override
     public void executer(HttpServletRequest request) {
