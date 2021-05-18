@@ -9,6 +9,10 @@ import Abstract.Action;
 import Abstract.Serialisation;
 import AppointmentServlet.AskConsultationAction;
 import AppointmentServlet.AskConsultationSerialisation;
+import AppointmentServlet.EmployeeActiveConsultationAction;
+import AppointmentServlet.EmployeeActiveConsultationSerialisation;
+import AppointmentServlet.PredictionsClientAction;
+import AppointmentServlet.PredictionsClientSerialisation;
 import AuthentificationServlet.LoginClientAction;
 import AuthentificationServlet.LoginClientSerialisation;
 import AuthentificationServlet.LoginEmployeeAction;
@@ -110,6 +114,16 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call AskConsultation servlet");
                 action = new AskConsultationAction();
                 serialisation = new AskConsultationSerialisation();
+                break;
+            case "getEmployeeActiveConsultation":
+                System.out.println("Call EmployeeActiveConsultation servlet");
+                action = new EmployeeActiveConsultationAction();
+                serialisation = new EmployeeActiveConsultationSerialisation();
+                break;
+            case "getPredicitionForClient":
+                System.out.println("Call PredictionsClient servlet");
+                action = new PredictionsClientAction();
+                serialisation = new PredictionsClientSerialisation();
                 break;
             case "topFiveMediums":
                 System.out.println("Call topFiveMediums servlet");
