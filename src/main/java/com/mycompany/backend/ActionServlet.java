@@ -109,7 +109,7 @@ public class ActionServlet extends HttpServlet {
                         break;
                     default:
                         System.out.println("Error, neither Employee or Client for this selection : " + userType);
-                        break;                          
+                        break;
                 }
                 break;
             case "signUp":
@@ -182,6 +182,8 @@ public class ActionServlet extends HttpServlet {
                 action = new EndConsultationAction();
                 serialisation = new EndConsultationSerialisation();
                 break;
+            case "":
+                
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;
