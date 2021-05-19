@@ -28,6 +28,8 @@ import com.mycompany.backend.statsservlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
 import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
 import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
+import com.mycompany.backend.authentificationservlet.IsConnectedAction;
+import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.dao.MediumDao;
@@ -154,6 +156,11 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call listMediums servlet");
                 action = new GetListMediumsAction();
                 serialisation = new GetListMediumsSerialisation();
+                break;
+            case "isConnected":
+                System.out.println("Call isConnected servlet");
+                action = new IsConnectedAction();
+                serialisation = new IsConnectedSerialisation();
                 break;
             default:
                 System.out.println("Invalid Todo : " + todo);
