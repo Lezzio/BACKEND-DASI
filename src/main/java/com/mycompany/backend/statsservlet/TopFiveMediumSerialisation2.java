@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class TopFiveMediumSerialisation2 extends Serialisation{
 
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        
 
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -27,28 +28,30 @@ public class TopFiveMediumSerialisation2 extends Serialisation{
         JsonObject container = new JsonObject();
 
         System.out.println("On affiche le nombre de consultation par médium");
-        if (mapTopFiveMedium != null) {
-
+        if (!mapTopFiveMedium.isEmpty()) {
+            System.out.println("MAPTOP FIVE ========================");
             JsonArray jsonListeMedium = new JsonArray () ;
             for (Map.Entry mapentry : mapTopFiveMedium.entrySet()) {
                 JsonObject jsonMedium = new JsonObject();
-                jsonMedium.addProperty("Nom", (String) mapentry.getKey());
-                jsonMedium.addProperty("NombreClientUnique", (Number) mapentry.getValue());
+                jsonMedium.addProperty("name", (String) mapentry.getKey());
+                jsonMedium.addProperty("numberUniqueClients", (Number) mapentry.getValue());
                 jsonListeMedium.add(jsonMedium);
+                System.out.println("Name : " + mapentry.getKey());
+                System.out.println("Value : " + mapentry.getValue());
+                System.out.println("---------");
             }
 
-            String listeMedium = gson.toJson(jsonListeMedium);
-            container.addProperty("statsTospFiveMediumNonVide", "true");
-            container.addProperty("listeMedium", listeMedium);
+            //String listeMedium = gson.toJson(jsonListeMedium);
+            container.addProperty("statsTopFiveMediumNonVide", true);
+            container.add("listeMedium", jsonListeMedium);
         }
         else
         {
-            container.addProperty("statsTospFiveMediumNonVide", "flase");
+            container.addProperty("statsTopFiveMediumNonVide", false);
         }
         System.out.println("On est au bout");
         // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         PrintWriter out = response.getWriter();
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         gson.toJson(container, out);
         out.close();
     }

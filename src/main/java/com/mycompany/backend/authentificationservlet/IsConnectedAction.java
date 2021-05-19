@@ -17,7 +17,7 @@ public class IsConnectedAction extends Action{
 
     @Override
     public void executer(HttpServletRequest request) {
-    HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         Long clientId = (Long) session.getAttribute("clientId");
         Long employeeId = (Long) session.getAttribute("employeeId");
         if(clientId != null){
