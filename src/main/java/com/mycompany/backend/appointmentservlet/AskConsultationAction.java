@@ -10,6 +10,7 @@ import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author victo
@@ -21,19 +22,20 @@ public class AskConsultationAction extends Action {
     @Override
     public void executer(HttpServletRequest request){
         String mediumParam = request.getParameter("medium");
-        String clientParam = request.getParameter("client");
+        Long mediumId = Long.parseLong(mediumParam);
+        
+        HttpSession session = request.getSession();
+        Long clientId = (Long) session.getAttribute("clientId");
        
-        Long idMedium = Long.parseLong(mediumParam);
-        Long idClient = Long.parseLong(clientParam);
         
         EntityService entityService = new EntityService();        
         
         // La vérification de la disponibilité de l'employé se fait dans le service
-        Client client = entityService.searchClientById(idClient);
-        Medium medium = entityService.searchMediumById(idMedium);
+        Client client = entityService.searchClientById(clientId);
+        Medium medium = entityService.searchMediumById(mediumId);
         
-        System.out.println("Medium = " + medium + " id = " + idMedium);
-        System.out.println("Client = " + client + " id = " + idClient);
+        System.out.println("Client = " + client + " id = " + clientId);
+        System.out.println("Medium = " + medium + " id = " + mediumId);
         
         Long idConsultation = appointmentService.askConsultation(client, medium);
         

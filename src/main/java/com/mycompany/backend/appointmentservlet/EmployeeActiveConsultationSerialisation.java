@@ -20,20 +20,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EmployeeActiveConsultationSerialisation extends Serialisation {
 
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .serializeNulls()
+            .create();
 
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JsonObject container = new JsonObject();
         // Lecture des attributs de la requête (stockés par action)
-        String consultation = (String) request.getAttribute("Consultation");
+        String consultation = (String) request.getAttribute("consultation");
 
         // Ajout de propriétés au conteneur JSON
-        container.addProperty("Consultation", consultation);
+        container.addProperty("consultation", consultation);
 
         // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         PrintWriter out = this.getWriter(response);
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         gson.toJson(container, out);
         out.close();
     }

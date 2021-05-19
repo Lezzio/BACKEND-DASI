@@ -85,12 +85,12 @@ public class ActionServlet extends HttpServlet {
             case "signIn":
                 System.out.println("Call signIn servlet");
                 String userType = request.getParameter("userType");
-                switch(userType){
-                    case "Client":
+                switch(userType) {
+                    case "client":
                         action = new LoginClientAction();
                         serialisation = new LoginClientSerialisation();
                         break;
-                    case "Employee":
+                    case "employee":
                         action = new LoginEmployeeAction();
                         serialisation = new LoginEmployeeSerialisation();
                         break;
@@ -145,6 +145,8 @@ public class ActionServlet extends HttpServlet {
         }
         
         if(action != null && serialisation != null){
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
             action.executer(request);
             serialisation.serialiser(request, response);
         }else{

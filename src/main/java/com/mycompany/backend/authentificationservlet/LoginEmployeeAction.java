@@ -8,6 +8,7 @@ import com.mycompany.backend.Action;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Aurélien
@@ -21,6 +22,10 @@ public class LoginEmployeeAction extends Action{
         Employee employee = authentificationService.authentificateEmployee(login, password);
         System.out.println("Employee = " + employee);
         request.setAttribute("employee", employee);
+        
+        //Update the session employee id
+        HttpSession session = request.getSession();
+        session.setAttribute("employeeId", employee.getId());
     }
     
 }

@@ -8,6 +8,7 @@ package com.mycompany.backend.entityservlet;
 import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,28 +21,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetEmployeeSerialisation extends Serialisation {
 
-    private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+    private final Gson gson = new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd")
+            .create();
 
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         Employee employee = (Employee) request.getAttribute("employee");
-        if (employee != null) {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            String employeeJson = gson.toJson(employee);
-            out.print("{");
-            out.print("\"employee\": ");
-            out.print(employeeJson);
-            out.println("}");
-            out.flush();
-        } else {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            out.print("{");
-            out.print("\"employee\": \"null\"");
-            out.println("}");
-            out.flush();
-        }
+        
+        JsonObject container = new JsonObject();
+        
+        String employeeJson = gson.toJson(employee);
+        container.addProperty("employee", employeeJson);
+        
+        gson.toJson(container, out);
+        out.close();
     }
+    
 }
