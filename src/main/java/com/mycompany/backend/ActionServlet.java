@@ -76,8 +76,8 @@ public class ActionServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.getAttribute("clientId");
-        session.setAttribute("clientId", 1);
-        session.setAttribute("employeeId", 2);
+        session.setAttribute("clientId", 1L);
+        session.setAttribute("employeeId", 2L);
 
         String todo = request.getParameter("todo");
 
