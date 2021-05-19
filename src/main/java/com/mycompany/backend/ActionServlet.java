@@ -74,7 +74,10 @@ public class ActionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         response.addHeader("Access-Control-Allow-Origin", "*");
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
+        session.getAttribute("clientId");
+        session.setAttribute("clientId", 1);
+        session.setAttribute("employeeId", 2);
 
         String todo = request.getParameter("todo");
 

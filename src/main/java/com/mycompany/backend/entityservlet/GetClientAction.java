@@ -26,7 +26,7 @@ public class GetClientAction extends Action {
         Long clientId = (Long) session.getAttribute("clientId");
         
         Client client = entityService.searchClientById(clientId);
-        System.out.println("Client = " + client);
+        System.out.println("Client = " + client + " and clientId = " + clientId);
         request.setAttribute("client", client);
         
     }
