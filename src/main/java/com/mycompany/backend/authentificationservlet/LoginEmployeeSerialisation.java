@@ -29,7 +29,7 @@ public class LoginEmployeeSerialisation extends Serialisation{
         String connexionStatus = employee != null ? "true" : "false";
         
         container.addProperty("connexion", connexionStatus);
-        container.addProperty("userType", "client");
+        container.addProperty("userType", "employee");
         
         gson.toJson(container, out);
         out.close();
