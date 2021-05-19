@@ -8,10 +8,8 @@ package com.mycompany.backend.appointmentservlet;
 import com.mycompany.backend.Action;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
-import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
-import static java.lang.Long.parseLong;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 public class GetClientHistoryAction extends Action {
     @Override
     public void executer(HttpServletRequest request){
-        Client client = (Client) request.getAttribute("Client");
+        Long clientId = Long.parseLong(request.getParameter("clientId"));
         
         EntityService entityService = new EntityService();        
         
         AppointmentService appointmentService = new AppointmentService();
+        Client client = entityService.searchClientById(clientId);
         List<Consultation> consultations = appointmentService.fetchClientHistory(client);
         List<String> mediumNames = new ArrayList<>();
-        for(Consultation consultation : consultations){
+        for(Consultation consultation : consultations) {
             mediumNames.add(consultation.getMedium().getName());
         }
         request.setAttribute("Consultations", consultations);
