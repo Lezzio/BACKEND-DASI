@@ -39,6 +39,7 @@ import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Spirite;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -155,9 +156,7 @@ public class ActionServlet extends HttpServlet {
                 break;
         }
         
-        if(action != null && serialisation != null){
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
+        if(action != null && serialisation != null) {
             action.executer(request);
             serialisation.serialiser(request, response);
         }else{

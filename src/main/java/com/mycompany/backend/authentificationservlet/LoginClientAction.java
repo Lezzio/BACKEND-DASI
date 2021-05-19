@@ -26,7 +26,9 @@ public class LoginClientAction extends Action {
         request.setAttribute("client", client);
         
         //Update the session client id
+        if(client != null) {
         HttpSession session = request.getSession();
         session.setAttribute("clientId", client.getId());
+        }
     }
 }

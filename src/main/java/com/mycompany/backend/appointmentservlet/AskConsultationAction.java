@@ -34,8 +34,8 @@ public class AskConsultationAction extends Action {
         Client client = entityService.searchClientById(clientId);
         Medium medium = entityService.searchMediumById(mediumId);
         
-        System.out.println("Client = " + client + " id = " + clientId);
-        System.out.println("Medium = " + medium + " id = " + mediumId);
+        System.out.println("Client = " + client + " id = " + clientId.toString());
+        System.out.println("Medium = " + medium + " id = " + mediumId.toString());
         
         Long idConsultation = appointmentService.askConsultation(client, medium);
         

@@ -26,7 +26,7 @@ public class LoginClientSerialisation extends Serialisation{
         Client client = (Client) request.getAttribute("client");
         JsonObject container = new JsonObject();
         
-        String connexionStatus = client != null ? "true" : "false";
+        Boolean connexionStatus = client != null ? Boolean.TRUE : Boolean.FALSE;
                 
         container.addProperty("connexion", connexionStatus);
         container.addProperty("userType", "client");

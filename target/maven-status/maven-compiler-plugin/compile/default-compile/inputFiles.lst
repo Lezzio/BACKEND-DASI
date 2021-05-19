@@ -1,4 +1,6 @@
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ClientDistributionByEmployeeSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetListMediumsAction.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/SignupClientSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/ActionServlet.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginClientSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetEmployeeAction.java
@@ -9,10 +11,15 @@
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/AskConsultationSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/AskConsultationAction.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/PredictionsClientSerialisation.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/GetClientHistorySerialisation.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/TopFiveMediumSerialisation2.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetEmployeeSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/GetClientHistoryAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationSerialisation.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/Serialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/TopFiveMediumAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationAction.java
@@ -21,7 +28,10 @@
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetEmployeeSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginEmployeeAction.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetClientSerialisation2.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ClientDistributionByEmployeeSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/ClientDistributionByEmployeeAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/SignupClientAction.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/PredictionsClientAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginClientAction.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginClientSerialisation2.java
