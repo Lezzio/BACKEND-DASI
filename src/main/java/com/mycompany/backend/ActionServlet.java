@@ -26,6 +26,8 @@ import com.mycompany.backend.entityservlet.GetListMediumsSerialisation;
 import com.mycompany.backend.statsservlet.TopFiveMediumAction;
 import com.mycompany.backend.statsservlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
+import com.mycompany.backend.appointmentservlet.HasActiveConsultationAction;
+import com.mycompany.backend.appointmentservlet.HasActiveConsultationSerialisation;
 import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
 import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
 import com.mycompany.backend.authentificationservlet.IsConnectedAction;
@@ -162,6 +164,10 @@ public class ActionServlet extends HttpServlet {
                 action = new IsConnectedAction();
                 serialisation = new IsConnectedSerialisation();
                 break;
+            case "hasActiveConsultation":
+                System.out.println("Call hasActiveConsultation servlet");
+                action = new HasActiveConsultationAction();
+                serialisation = new HasActiveConsultationSerialisation();
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;

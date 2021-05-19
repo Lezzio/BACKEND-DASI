@@ -6,7 +6,6 @@
 package com.mycompany.backend.authentificationservlet;
 import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class LoginClientSerialisation extends Serialisation{
         Client client = (Client) request.getAttribute("client");
         JsonObject container = new JsonObject();
         
-        Boolean connexionStatus = client != null ? Boolean.TRUE : Boolean.FALSE;
+        Boolean connexionStatus = client != null;
                 
         container.addProperty("connexion", connexionStatus);
         container.addProperty("userType", "client");
