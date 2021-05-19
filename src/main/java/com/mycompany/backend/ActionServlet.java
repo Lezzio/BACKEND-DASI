@@ -32,6 +32,8 @@ import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
 import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
 import com.mycompany.backend.appointmentservlet.StartConsultationAction;
 import com.mycompany.backend.appointmentservlet.StartConsultationSerialisation;
+import com.mycompany.backend.appointmentservlet.EndConsultationAction;
+import com.mycompany.backend.appointmentservlet.EndConsultationSerialisation;
 import com.mycompany.backend.authentificationservlet.IsConnectedAction;
 import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
@@ -48,7 +50,6 @@ import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -170,10 +171,17 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call hasActiveConsultation servlet");
                 action = new HasActiveConsultationAction();
                 serialisation = new HasActiveConsultationSerialisation();
+                break;
             case "startConsultation":
                 System.out.println("Call startConsultation servlet");
                 action = new StartConsultationAction();
                 serialisation = new StartConsultationSerialisation();
+                break;
+            case "endConsultation":
+                System.out.println("Call endConsultation servlet");
+                action = new EndConsultationAction();
+                serialisation = new EndConsultationSerialisation();
+                break;
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;
@@ -182,7 +190,7 @@ public class ActionServlet extends HttpServlet {
         if(action != null && serialisation != null) {
             action.executer(request);
             serialisation.serialiser(request, response);
-        }else{
+        } else {
             System.out.println("Error");
             System.out.println("Action : " + action);
             System.out.println("Serialisation : " + serialisation);
