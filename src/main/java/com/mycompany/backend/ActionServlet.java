@@ -26,6 +26,8 @@ import com.mycompany.backend.entityservlet.GetListMediumsSerialisation;
 import com.mycompany.backend.statsservlet.TopFiveMediumAction;
 import com.mycompany.backend.statsservlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
+import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
+import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.dao.MediumDao;
@@ -37,7 +39,6 @@ import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Spirite;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
-import com.mycompany.td2.dasi.utils.Gender;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -118,6 +119,16 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call AskConsultation servlet");
                 action = new AskConsultationAction();
                 serialisation = new AskConsultationSerialisation();
+                break;
+            case "getEmployeeActiveConsultation":
+                System.out.println("Call EmployeeActiveConsultation servlet");
+                action = new EmployeeActiveConsultationAction();
+                serialisation = new EmployeeActiveConsultationSerialisation();
+                break;
+            case "getPredicitionForClient":
+                System.out.println("Call PredictionsClient servlet");
+                action = new PredictionsClientAction();
+                serialisation = new PredictionsClientSerialisation();
                 break;
             case "topFiveMediums":
                 System.out.println("Call topFiveMediums servlet");
