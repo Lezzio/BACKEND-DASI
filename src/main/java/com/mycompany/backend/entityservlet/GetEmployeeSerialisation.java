@@ -8,7 +8,6 @@ package com.mycompany.backend.entityservlet;
 import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,13 +28,7 @@ public class GetEmployeeSerialisation extends Serialisation {
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         Employee employee = (Employee) request.getAttribute("employee");
-        
-        JsonObject container = new JsonObject();
-        
-        String employeeJson = gson.toJson(employee);
-        container.addProperty("employee", employeeJson);
-        
-        gson.toJson(container, out);
+        gson.toJson(employee, out);
         out.close();
     }
     
