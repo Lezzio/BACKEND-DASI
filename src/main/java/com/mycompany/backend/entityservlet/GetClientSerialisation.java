@@ -29,13 +29,7 @@ public class GetClientSerialisation extends Serialisation{
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         Client client = (Client) request.getAttribute("client");
-        
-        JsonObject container = new JsonObject();
-        
-        String clientJson = gson.toJson(client);
-        container.addProperty("client", clientJson);
-        
-        gson.toJson(container, out);
+        gson.toJson(client, out);
         out.close();
     }
 }
