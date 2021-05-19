@@ -30,6 +30,8 @@ import com.mycompany.backend.appointmentservlet.HasActiveConsultationAction;
 import com.mycompany.backend.appointmentservlet.HasActiveConsultationSerialisation;
 import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
 import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
+import com.mycompany.backend.appointmentservlet.StartConsultationAction;
+import com.mycompany.backend.appointmentservlet.StartConsultationSerialisation;
 import com.mycompany.backend.authentificationservlet.IsConnectedAction;
 import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
@@ -168,6 +170,10 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call hasActiveConsultation servlet");
                 action = new HasActiveConsultationAction();
                 serialisation = new HasActiveConsultationSerialisation();
+            case "startConsultation":
+                System.out.println("Call startConsultation servlet");
+                action = new StartConsultationAction();
+                serialisation = new StartConsultationSerialisation();
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;

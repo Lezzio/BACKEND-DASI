@@ -31,7 +31,7 @@ public class GetListMediumsSerialisation extends Serialisation{
         List<Medium> listMediums = (List<Medium>) request.getAttribute("listMediums");
         JsonArray jsonArray = new JsonArray();
         
-        for (Medium medium : listMediums){
+        for (Medium medium : listMediums) {
             JsonObject jsonMedium = new JsonObject();
             jsonMedium.addProperty("name", medium.getName());
             jsonMedium.addProperty("id", medium.getId());

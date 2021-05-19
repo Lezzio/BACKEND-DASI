@@ -15,9 +15,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author victo
+ * @author aguigal
  */
-public class EmployeeActiveConsultationAction extends Action {
+public class StartConsultationAction extends Action {
+    
     @Override
     public void executer(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -28,6 +29,8 @@ public class EmployeeActiveConsultationAction extends Action {
         
         Employee employee = entityService.searchEmployeeById(employeeId);
         Consultation consultation = appointmentService.getEmployeeActiveConsultation(employee);
+        appointmentService.acceptConsultation(employee, consultation);
         request.setAttribute("consultation", consultation);
     }
+    
 }
