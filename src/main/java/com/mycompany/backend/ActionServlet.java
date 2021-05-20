@@ -26,6 +26,8 @@ import com.mycompany.backend.entityservlet.GetListMediumsSerialisation;
 import com.mycompany.backend.statsservlet.TopFiveMediumAction;
 import com.mycompany.backend.statsservlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
+import com.mycompany.backend.appointmentservlet.GetClientOwnHistoryAction;
+import com.mycompany.backend.appointmentservlet.GetClientOwnHistorySerialisation;
 import com.mycompany.backend.appointmentservlet.HasActiveConsultationAction;
 import com.mycompany.backend.appointmentservlet.HasActiveConsultationSerialisation;
 import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
@@ -182,8 +184,10 @@ public class ActionServlet extends HttpServlet {
                 action = new EndConsultationAction();
                 serialisation = new EndConsultationSerialisation();
                 break;
-            case "":
-                
+            case "getClientOwnHistory":
+                System.out.println("Call startConsultation servlet");
+                action = new GetClientOwnHistoryAction();
+                serialisation = new GetClientOwnHistorySerialisation();
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;

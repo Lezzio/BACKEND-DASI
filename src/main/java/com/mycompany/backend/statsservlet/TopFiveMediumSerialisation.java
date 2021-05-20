@@ -28,7 +28,7 @@ public class TopFiveMediumSerialisation extends Serialisation{
         Map<String, Integer> mapTopFiveMedium = (Map<String, Integer>)request.getAttribute("mapTopFiveMedium");
         PrintWriter out = response.getWriter();
         System.out.println("On affiche le nombre de consultation par médium");
-        if (mapTopFiveMedium != null) {
+        if (!mapTopFiveMedium.isEmpty()) {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             
