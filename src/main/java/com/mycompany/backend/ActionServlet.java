@@ -201,7 +201,7 @@ public class ActionServlet extends HttpServlet {
                 serialisation = new SetCommentarySerialisation();
                 break;
             case "getClientOwnHistory":
-                System.out.println("Call startConsultation action");
+                System.out.println("Call getClientOwnHistory action");
                 action = new GetClientOwnHistoryAction();
                 serialisation = new GetClientOwnHistorySerialisation();
                 break;
