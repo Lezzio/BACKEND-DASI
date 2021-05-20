@@ -32,7 +32,7 @@ public class TopFiveMediumAction extends Action {
 
         // Appel des Services Métiers (= méthodes de la classe de Service)
         HashMap<String, Integer> mapTopFiveMedium = (HashMap<String, Integer>) statsService.topFiveMedium();
-        mapTopFiveMedium = sortWithValues(mapTopFiveMedium); 
+         
         // Stockage des Résultats dans les Attributs de la Requête
         request.setAttribute("mapTopFiveMedium", mapTopFiveMedium);
 
