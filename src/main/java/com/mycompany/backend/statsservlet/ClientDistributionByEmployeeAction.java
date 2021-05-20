@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ClientDistributionByEmployeeAction extends Action{
      
-    private final Gson gson = new Gson();
-    
     @Override
     public void executer(HttpServletRequest request)
     {
@@ -32,12 +30,10 @@ public class ClientDistributionByEmployeeAction extends Action{
         EntityService entityService = new EntityService();
         // Appel des Services Métiers (= méthodes de la classe de Service)
         Map<Long, Integer> mapDistributionClientByEmployeeRetour = statsService.clientDistributionByEmployee();
-        Map<Employee, Integer> mapDistributionClientByEmployee = new HashMap<Employee,Integer>();
-        Employee employee = null;
-        int nombreClient;
+        Map<Employee, Integer> mapDistributionClientByEmployee = new HashMap<>();
         
         for (Map.Entry mapentry : mapDistributionClientByEmployeeRetour.entrySet()) {
-            employee = entityService.searchEmployeeById((Long)mapentry.getKey());
+            Employee employee = entityService.searchEmployeeById((Long)mapentry.getKey());
             mapDistributionClientByEmployee.put(employee, (Integer)mapentry.getValue());
         }
         

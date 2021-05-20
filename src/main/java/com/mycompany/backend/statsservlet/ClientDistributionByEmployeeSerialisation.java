@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package com.mycompany.backend.statsservlet;
-
 import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,45 +21,33 @@ import javax.servlet.http.HttpServletResponse;
  * @author maxim
  */
 public class ClientDistributionByEmployeeSerialisation extends Serialisation {
-    
-    private final Gson gson = new Gson();
-    
+
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
+
         Map<Employee, Integer> mapDistributionClientByEmployee = (Map<Employee, Integer>)request.getAttribute("mapDistributionClientByEmployee");
-        PrintWriter out = response.getWriter();
+        JsonObject container = new JsonObject();
+        JsonArray jsonNumberClients = new JsonArray();
+        JsonArray jsonEmployeeNames = new JsonArray();
         System.out.println("On affiche le nombre de consultation par médium");
         if (mapDistributionClientByEmployee != null) {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
             
-            JsonArray jsonListeMedium = new JsonArray () ;
-            /*TODO : error line 43
             for (Map.Entry mapentry : mapDistributionClientByEmployee.entrySet()) {
                 JsonObject jsonMedium = new JsonObject();
-                jsonMedium.addProperty("First", (String) mapentry.getKey().getFirstName());
-                jsonMedium.addProperty("NombreClientUnique", (Number) mapentry.getValue());
-                jsonListeMedium.add(jsonMedium);
-            }*/
-            
-            String listeMedium = gson.toJson(jsonListeMedium);
-            out.print("{");
-            out.println("\"statsTopFiveMediumNonVide\": true,");
-            out.print("\"listeMedium\": ");
-            out.print(listeMedium);
-            out.println("}");
-            out.flush();
+                jsonEmployeeNames.add(((Employee) mapentry.getKey()).getFirstName());
+                jsonNumberClients.add((Number) mapentry.getValue());
+            }            
         }
-        else
-        {
-            out.print("{");
-            out.println("\"statsTopFiveMediumNonVide\": false,");
-            out.println("}");
-            out.flush();
-        }
-        System.out.println("On est au bout");
-    }
-    
-}
+        
+        container.add("labels", jsonEmployeeNames);
+        container.add("data", jsonNumberClients);
+        
 
+        // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
+        PrintWriter out = response.getWriter();
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        gson.toJson(container, out);
+        out.close();
+    }
+
+}
