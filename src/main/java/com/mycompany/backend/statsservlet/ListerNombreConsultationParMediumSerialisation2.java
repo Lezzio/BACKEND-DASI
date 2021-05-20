@@ -29,25 +29,18 @@ public class ListerNombreConsultationParMediumSerialisation2 extends Serialisati
 
         Map<String, Integer> mapConsultationByMedium = (Map<String, Integer>)request.getAttribute("mapConsultationByMedium");
         System.out.println("On affiche le nombre de consultation par médium");
-
+        
+        JsonArray jsonNumberConsultations = new JsonArray () ; // Création du tableau de médiums
+        JsonArray jsonNames = new JsonArray();
         if (mapConsultationByMedium != null) {
-
-            JsonArray jsonListeMediumConsultation = new JsonArray () ; // Création du tableau de médiums
             for (Map.Entry mapentry : mapConsultationByMedium.entrySet()) {
-                JsonObject jsonMedium = new JsonObject(); // Créatipon de l'objet Medium Json
-                jsonMedium.addProperty("NomMedium", (String) mapentry.getKey());
-                jsonMedium.addProperty("NombreConsultation", (Number) mapentry.getValue());
-                jsonListeMediumConsultation.add(jsonMedium); //Ajout de l'objet au tableau Json
+                jsonNumberConsultations.add((Number) mapentry.getValue());
+                jsonNames.add((String) mapentry.getKey());
             }
-            String listeMediumConsultation = gson.toJson(jsonListeMediumConsultation);
-            container.addProperty("statsNonVide", "true");
-            container.addProperty("listeMediumConsultation", listeMediumConsultation);
         }
-        else
-        {
-            container.addProperty("statsNonVide", "false");
-        }
-        System.out.println("Fin de la Map");
+        container.add("labels", jsonNames);
+        container.add("data", jsonNumberConsultations);
+        
        // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();

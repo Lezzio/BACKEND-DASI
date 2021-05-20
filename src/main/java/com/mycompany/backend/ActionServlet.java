@@ -42,20 +42,17 @@ import com.mycompany.backend.authentificationservlet.IsConnectedAction;
 import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
 import com.mycompany.backend.authentificationservlet.LogoutAction;
 import com.mycompany.backend.authentificationservlet.LogoutSerialisation;
-import com.mycompany.td2.dasi.dao.ConsultationDao;
+import com.mycompany.backend.statsservlet.ClientDistributionByEmployeeAction;
+import com.mycompany.backend.statsservlet.ClientDistributionByEmployeeSerialisation;
+import com.mycompany.backend.statsservlet.ListerNombreConsultationParMediumAction;
+import com.mycompany.backend.statsservlet.ListerNombreConsultationParMediumSerialisation;
 import com.mycompany.td2.dasi.dao.JpaUtil;
-import com.mycompany.td2.dasi.dao.MediumDao;
-import com.mycompany.td2.dasi.metier.modele.Astrolog;
-import com.mycompany.td2.dasi.metier.modele.Cartomancian;
-import com.mycompany.td2.dasi.metier.modele.Client;
-import com.mycompany.td2.dasi.metier.modele.Consultation;
-import com.mycompany.td2.dasi.metier.modele.Employee;
-import com.mycompany.td2.dasi.metier.modele.Spirite;
+
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
-import com.mycompany.td2.dasi.utils.Gender;
+
 import java.io.IOException;
-import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -204,6 +201,16 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call getClientOwnHistory action");
                 action = new GetClientOwnHistoryAction();
                 serialisation = new GetClientOwnHistorySerialisation();
+                break;
+            case "numberConsultationsByMedium":
+                System.out.println("Call numberConsultationsByMedium action");
+                action = new ListerNombreConsultationParMediumAction();
+                serialisation = new ListerNombreConsultationParMediumSerialisation();
+                break;
+            case "employeeDistribution":
+                System.out.println("Call employeeDistribution action");
+                action = new ClientDistributionByEmployeeAction();
+                serialisation = new ClientDistributionByEmployeeSerialisation();
                 break;
             default:
                 System.out.println("Invalid Todo : " + todo);
