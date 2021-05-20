@@ -6,6 +6,8 @@
 package com.mycompany.backend.authentificationservlet;
 import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,35 +19,29 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SignupClientSerialisation extends Serialisation {
     Gson gson = new Gson();
+
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
         Client client = (Client) request.getAttribute("client");
+        JsonObject container = new JsonObject();
+
         if (client != null) {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            String clientJson = gson.toJson(client);
-            out.print("{");
-            out.println("\"signup\": true,");
-            out.print("\"client\": ");
-            out.print(clientJson);
-            out.println("}");
-            out.flush();
+            container.addProperty("signup", true);   
+            container.addProperty("client", gson.toJson(client));
         } else {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            
-            out.print("{");
-            out.println("\"signup\": false,");
+            container.addProperty("signup", false);
             if((int) request.getAttribute("id") == -1){
-                out.println("\"exists\": true,");
+                container.addProperty("exists", true);
             }else{
-                out.println("\"internError\": true,");
+                container.addProperty("internError", true);
             }
-            out.print("\"client\": \"null\"");
-            out.println("}");
-            out.flush();
+            container.addProperty("client", gson.toJson(null));
         }
+        // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
+        PrintWriter out = response.getWriter();
+        gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        gson.toJson(container, out);
+        out.close();
     }
-    
+
 }
