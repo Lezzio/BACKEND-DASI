@@ -34,6 +34,7 @@ com/mycompany/backend/statsservlet/TopFiveMediumSerialisation.class
 com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationSerialisation.class
 com/mycompany/backend/statsservlet/TopFiveMediumAction$1.class
 com/mycompany/backend/appointmentservlet/GetClientHistorySerialisation.class
+.netbeans_automatic_build
 com/mycompany/backend/authentificationservlet/IsConnectedAction.class
 com/mycompany/backend/appointmentservlet/StartConsultationAction.class
 com/mycompany/backend/appointmentservlet/EndConsultationSerialisation.class
