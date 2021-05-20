@@ -8,7 +8,7 @@ $(document).ready(function () {
 function displayInfos() {
     // Appel AJAX
     $.ajax({
-        url: 'localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'getClient'
@@ -44,7 +44,7 @@ function displayInfos() {
 function displayMediums() {
 
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'listMediums'
@@ -104,7 +104,7 @@ function handleMediumClick(id) {
     console.log("MediumId = " + id)
 
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'askAppointment',

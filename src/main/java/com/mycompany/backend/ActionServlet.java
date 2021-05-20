@@ -84,7 +84,7 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", "*");
 
         HttpSession session = request.getSession();
         session.getAttribute("clientId");
@@ -122,6 +122,7 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call signOut action");
                 action = new LogoutAction();
                 serialisation = new LogoutSerialisation();
+                break;
             case "signUp":
                 System.out.println("Call signUp action");
                 action = new SignupClientAction();
@@ -163,7 +164,7 @@ public class ActionServlet extends HttpServlet {
                 serialisation = new EmployeeActiveConsultationSerialisation();
                 break;
             case "getClientHistory":
-                System.out.println("Call fetchActiveConsultation action");
+                System.out.println("Call getClientHistory action");
                 action = new GetClientHistoryAction();
                 serialisation = new GetClientHistorySerialisation();
                 break;
@@ -196,6 +197,7 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call startConsultation action");
                 action = new GetClientOwnHistoryAction();
                 serialisation = new GetClientOwnHistorySerialisation();
+                break;
             default:
                 System.out.println("Invalid Todo : " + todo);
                 break;

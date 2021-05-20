@@ -25,7 +25,7 @@ function switchEmployee() {
 }
 function isConnected(){
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'isConnected'
@@ -64,7 +64,7 @@ function loginButton() {
     console.log(champPassword);
     // Appel AJAX
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'signIn',

@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 function getHistory(){
     $.ajax({
-        url: 'localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'getClientOwnHistory'
@@ -60,7 +60,7 @@ function getHistory(){
 function getInfos() {
     // Appel AJAX
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'getClient',
