@@ -8,7 +8,6 @@ import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;

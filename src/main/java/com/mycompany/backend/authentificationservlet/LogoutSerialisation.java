@@ -5,35 +5,30 @@
  */
 package com.mycompany.backend.authentificationservlet;
 
-import com.mycompany.backend.Serialisation;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.backend.Serialisation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  *
- * @author Aurélien
+ * @author aguigal
  */
-public class LoginEmployeeSerialisation extends Serialisation{
-     private final Gson gson = new Gson();
+public class LogoutSerialisation extends Serialisation {
+
+    private final Gson gson = new Gson();
+    
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
         PrintWriter out = response.getWriter();
-        Employee employee = (Employee) request.getAttribute("employee");
+        Boolean done = (Boolean) request.getAttribute("done");
         JsonObject container = new JsonObject();
-        
-        Boolean connexionStatus = employee != null;
-        
-        container.addProperty("connexion", connexionStatus);
-        container.addProperty("userType", "employee");
-        
+        container.addProperty("logout", done);
         gson.toJson(container, out);
         out.close();
     }
-}
     
-
+}

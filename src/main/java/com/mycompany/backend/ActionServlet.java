@@ -38,6 +38,8 @@ import com.mycompany.backend.appointmentservlet.EndConsultationAction;
 import com.mycompany.backend.appointmentservlet.EndConsultationSerialisation;
 import com.mycompany.backend.authentificationservlet.IsConnectedAction;
 import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
+import com.mycompany.backend.authentificationservlet.LogoutAction;
+import com.mycompany.backend.authentificationservlet.LogoutSerialisation;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.dao.MediumDao;
@@ -98,7 +100,7 @@ public class ActionServlet extends HttpServlet {
         
         switch (todo) {
             case "signIn":
-                System.out.println("Call signIn servlet");
+                System.out.println("Call signIn action");
                 String userType = request.getParameter("userType");
                 switch(userType) {
                     case "client":
@@ -114,78 +116,82 @@ public class ActionServlet extends HttpServlet {
                         break;
                 }
                 break;
+            case "signOut":
+                System.out.println("Call signOut action");
+                action = new LogoutAction();
+                serialisation = new LogoutSerialisation();
             case "signUp":
-                System.out.println("Call signUp servlet");
+                System.out.println("Call signUp action");
                 action = new SignupClientAction();
                 serialisation = new SignupClientSerialisation();
                 break;
             case "getClient":
-                System.out.println("Call getClient servlet");
+                System.out.println("Call getClient action");
                 action = new GetClientAction();
                 serialisation = new GetClientSerialisation();
                 break;
             case "getEmployee":
-                System.out.println("Call getEmployee servlet");
+                System.out.println("Call getEmployee action");
                 action = new GetEmployeeAction();
                 serialisation = new GetEmployeeSerialisation();
                 break;
             case "askAppointment":
-                System.out.println("Call AskConsultation servlet");
+                System.out.println("Call AskConsultation action");
                 action = new AskConsultationAction();
                 serialisation = new AskConsultationSerialisation();
                 break;
             case "getEmployeeActiveConsultation":
-                System.out.println("Call EmployeeActiveConsultation servlet");
+                System.out.println("Call EmployeeActiveConsultation action");
                 action = new EmployeeActiveConsultationAction();
                 serialisation = new EmployeeActiveConsultationSerialisation();
                 break;
             case "getPredicitionForClient":
-                System.out.println("Call PredictionsClient servlet");
+                System.out.println("Call PredictionsClient action");
                 action = new PredictionsClientAction();
                 serialisation = new PredictionsClientSerialisation();
                 break;
             case "topFiveMediums":
-                System.out.println("Call topFiveMediums servlet");
+                System.out.println("Call topFiveMediums action");
                 action = new TopFiveMediumAction();
                 serialisation = new TopFiveMediumSerialisation();
                 break;
             case "fetchActiveConsultation":
-                System.out.println("Call fetchActiveConsultation servlet");
+                System.out.println("Call fetchActiveConsultation action");
                 action = new EmployeeActiveConsultationAction();
                 serialisation = new EmployeeActiveConsultationSerialisation();
                 break;
             case "getClientHistory":
-                System.out.println("Call fetchActiveConsultation servlet");
+                System.out.println("Call fetchActiveConsultation action");
                 action = new GetClientHistoryAction();
                 serialisation = new GetClientHistorySerialisation();
                 break;
             case "listMediums":
-                System.out.println("Call listMediums servlet");
+                System.out.println("Call listMediums action");
                 action = new GetListMediumsAction();
                 serialisation = new GetListMediumsSerialisation();
                 break;
             case "isConnected":
-                System.out.println("Call isConnected servlet");
+                System.out.println("Call isConnected action");
                 action = new IsConnectedAction();
                 serialisation = new IsConnectedSerialisation();
                 break;
             case "hasActiveConsultation":
-                System.out.println("Call hasActiveConsultation servlet");
+                System.out.println("Call hasActiveConsultation action");
                 action = new HasActiveConsultationAction();
                 serialisation = new HasActiveConsultationSerialisation();
                 break;
             case "startConsultation":
-                System.out.println("Call startConsultation servlet");
+                System.out.println("Call startConsultation action");
                 action = new StartConsultationAction();
                 serialisation = new StartConsultationSerialisation();
                 break;
             case "endConsultation":
-                System.out.println("Call endConsultation servlet");
+                System.out.println("Call endConsultation action");
                 action = new EndConsultationAction();
                 serialisation = new EndConsultationSerialisation();
                 break;
             case "getClientOwnHistory":
-                System.out.println("Call startConsultation servlet");
+                System.out.println("Call startConsultation action");
                 action = new GetClientOwnHistoryAction();
                 serialisation = new GetClientOwnHistorySerialisation();
             default:
