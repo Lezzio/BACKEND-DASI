@@ -3,7 +3,6 @@ com/mycompany/backend/Action.class
 com/mycompany/backend/appointmentservlet/AskConsultationSerialisation.class
 com/mycompany/backend/entityservlet/GetListMediumsSerialisation.class
 com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation.class
-com/mycompany/backend/statsservlet/ClientDistributionByEmployeeSerialisation2.class
 com/mycompany/backend/appointmentservlet/GetClientHistoryAction.class
 com/mycompany/backend/entityservlet/GetListMediumsAction.class
 com/mycompany/backend/appointmentservlet/PredictionsClientSerialisation.class
@@ -18,7 +17,6 @@ com/mycompany/backend/entityservlet/GetEmployeeAction.class
 com/mycompany/backend/Serialisation.class
 com/mycompany/backend/appointmentservlet/GetClientOwnHistorySerialisation.class
 com/mycompany/backend/appointmentservlet/SetCommentarySerialisation.class
-com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumSerialisation2.class
 com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumSerialisation.class
 com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation2.class
 com/mycompany/backend/appointmentservlet/EndConsultationAction.class
@@ -34,7 +32,6 @@ com/mycompany/backend/statsservlet/TopFiveMediumSerialisation.class
 com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationSerialisation.class
 com/mycompany/backend/statsservlet/TopFiveMediumAction$1.class
 com/mycompany/backend/appointmentservlet/GetClientHistorySerialisation.class
-.netbeans_automatic_build
 com/mycompany/backend/authentificationservlet/IsConnectedAction.class
 com/mycompany/backend/appointmentservlet/StartConsultationAction.class
 com/mycompany/backend/appointmentservlet/EndConsultationSerialisation.class

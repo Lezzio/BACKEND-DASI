@@ -44,8 +44,8 @@ import com.mycompany.backend.authentificationservlet.LogoutAction;
 import com.mycompany.backend.authentificationservlet.LogoutSerialisation;
 import com.mycompany.backend.statsservlet.ClientDistributionByEmployeeAction;
 import com.mycompany.backend.statsservlet.ClientDistributionByEmployeeSerialisation;
-import com.mycompany.backend.statsservlet.ListerNombreConsultationParMediumAction;
-import com.mycompany.backend.statsservlet.ListerNombreConsultationParMediumSerialisation;
+import com.mycompany.backend.statsservlet.ListConsultationCountByMediumAction;
+import com.mycompany.backend.statsservlet.ListConsultationCountByMediumSerialisation;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
@@ -204,8 +204,8 @@ public class ActionServlet extends HttpServlet {
                 break;
             case "numberConsultationsByMedium":
                 System.out.println("Call numberConsultationsByMedium action");
-                action = new ListerNombreConsultationParMediumAction();
-                serialisation = new ListerNombreConsultationParMediumSerialisation();
+                action = new ListConsultationCountByMediumAction();
+                serialisation = new ListConsultationCountByMediumSerialisation();
                 break;
             case "employeeDistribution":
                 System.out.println("Call employeeDistribution action");
