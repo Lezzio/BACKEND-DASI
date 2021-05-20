@@ -20,7 +20,7 @@ function getHistory(){
                 window.alert("History found");
                 $('.medium-container').empty()
                 $.each(response.history, function (index, element) {
-                    let currentClass;
+                    let currentClass = "";
                     switch (element.mediumType){
                         case "astrolog":
                             currentClass = "session-row blue"
@@ -36,9 +36,10 @@ function getHistory(){
                             console.log(element.mediumType)
                             break
                     }
+                    console.log(currentClass)
 
                     $('.medium-container').append(`
-                        <div class=${currentClass}>
+                        <div class="${currentClass}">
                             <p class="field">${element.day}</p>
                             <p class="field">${element.mediumName}</p>
                             <p class="field">${element.minutes} minutes</p>

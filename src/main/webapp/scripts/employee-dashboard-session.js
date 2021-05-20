@@ -5,12 +5,13 @@ let scoreHolder = { "level-love": 0, "level-health": 0, "level-work": 0 }
 
 $(document).ready(function () {
     displayActiveConsultation()
+    
 });
 
 function displayActiveConsultation() {
     // Appel AJAX
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'fetchActiveConsultation'
@@ -22,6 +23,7 @@ function displayActiveConsultation() {
             if (response !== null) {
                 displayActiveMedium(response.medium)
                 displayActiveClient(response.client)
+                getClientHistory(response.client.id)
                 console.log("Startdate = " + response.startDate)
                 if(response.startDate !== null && response.startDate !== undefined) {
                     console.log("Got here = " + response.startDate)
@@ -88,9 +90,9 @@ function displayActiveClient(client) {
 }
 
 function getClientHistory(clientId) {
-    /*
+    
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: './ActionServlet',
         method: 'POST',
         data: {
             todo: 'getClientHistory',
@@ -102,13 +104,16 @@ function getClientHistory(clientId) {
             console.log('Response', response); // LOG dans Console Javascript
             if (response.history) {
                 window.alert("Historique trouvé");
+                
                 $.each(response.history, function (index, element) {
-
+                    if(element.commentary === null){
+                        element.commentary = "Pas de commentaire pour cette séance";
+                    }
                     $('#main-content').append(
                         '<div class="history-box">' +
                         '<p class="history-date">' + element.endDate + '</p>' +
                         '<p class="history-medium">' + element.mediumName + '</p>' +
-                        '<p class="history-commentary">' + element.commmentary + '</p>' +
+                        '<p class="history-commentary">' + element.commentary + '</p>' +
                         '</div>'
                     )
                 })
@@ -122,7 +127,7 @@ function getClientHistory(clientId) {
             console.log('Error', error); // LOG dans Console Javascript
             alert("Erreur lors de l'appel AJAX");
         })
-     */
+     
 }
 
 function startButton() {

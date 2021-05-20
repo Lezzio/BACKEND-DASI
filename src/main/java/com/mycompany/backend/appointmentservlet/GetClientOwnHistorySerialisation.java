@@ -35,9 +35,24 @@ public class GetClientOwnHistorySerialisation extends Serialisation{
         List<String> mediumTypes = (List<String>) request.getAttribute("MediumsTypes");
         List<String> dates = (List<String>) request.getAttribute("Dates");
         List<Long> durations = (List<Long>) request.getAttribute("Minutes");
-        
+        for (String name : mediumNames){
+            System.out.println("name === " + name);
+        }
+        for (String type : mediumTypes){
+            System.out.println("type === " + type);
+        }
+        for (String date : dates){
+            System.out.println("date === " + date);
+        }
+        for (Long duration : durations){
+            System.out.println("duration === " + duration);
+        }
         for(int i = 0; i < mediumNames.size(); i++){
             JsonObject element = new JsonObject();
+            System.out.println("mediumType : " + mediumTypes.get(i));
+            System.out.println("day : " + dates.get(i));
+            System.out.println("mediumName : " + mediumNames.get(i));
+            System.out.println("minutes : " + durations.get(i));
             
             element.addProperty("mediumType", mediumTypes.get(i));
             element.addProperty("day", dates.get(i));

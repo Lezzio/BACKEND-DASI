@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +37,9 @@ public class GetClientHistorySerialisation extends Serialisation{
         int i = 0;
         for(Consultation consultation : consultations){
             JsonObject element = new JsonObject();
-            element.addProperty("endDate", consultation.getEndDate().toString());
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+            String endDate = dt.format(consultation.getEndDate());
+            element.addProperty("endDate", endDate);
             element.addProperty("mediumName", mediumNames.get(i));
             element.addProperty("commentary", consultation.getCommentary());
             i++;
@@ -44,7 +47,7 @@ public class GetClientHistorySerialisation extends Serialisation{
         }
 
         // Ajout de propriétés au conteneur JSON
-        container.addProperty("history", gson.toJson(history));
+        container.add("history", history);
         
         // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         PrintWriter out = this.getWriter(response);

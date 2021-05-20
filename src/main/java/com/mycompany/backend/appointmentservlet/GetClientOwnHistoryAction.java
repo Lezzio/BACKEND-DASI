@@ -51,13 +51,16 @@ public class GetClientOwnHistoryAction extends Action {
         
         for(Consultation consultation : consultations) {
             mediumNames.add(consultation.getMedium().getName());
-            mediumTypes.add(consultation.getMedium().getClass().getName().toLowerCase());
-            
+            System.out.println("mediumName : " + consultation.getMedium().getName());
+            mediumTypes.add(consultation.getMedium().getClass().getSimpleName().toLowerCase());
+            System.out.println("mediumType : " + consultation.getMedium().getClass().getSimpleName().toLowerCase());
             SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-            mediumNames.add(dt.format(consultation.getStartDate()));
+            dates.add(dt.format(consultation.getStartDate()));
+            System.out.println("start date : " + dt.format(consultation.getStartDate()));
             
             long diffInMillies = consultation.getEndDate().getTime() - consultation.getStartDate().getTime();
             durations.add(TimeUnit.MINUTES.convert(diffInMillies,TimeUnit.MILLISECONDS));
+            System.out.println("duration : " + TimeUnit.MINUTES.convert(diffInMillies,TimeUnit.MILLISECONDS));
         }
         
         request.setAttribute("MediumsNames", mediumNames);
