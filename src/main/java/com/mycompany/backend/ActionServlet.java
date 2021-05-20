@@ -26,16 +26,18 @@ import com.mycompany.backend.entityservlet.GetListMediumsSerialisation;
 import com.mycompany.backend.statsservlet.TopFiveMediumAction;
 import com.mycompany.backend.statsservlet.TopFiveMediumSerialisation;
 import com.google.gson.Gson;
+import com.mycompany.backend.appointmentservlet.CurrentSessionStateAction;
+import com.mycompany.backend.appointmentservlet.CurrentSessionStateSerialisation;
 import com.mycompany.backend.appointmentservlet.GetClientOwnHistoryAction;
 import com.mycompany.backend.appointmentservlet.GetClientOwnHistorySerialisation;
-import com.mycompany.backend.appointmentservlet.HasActiveConsultationAction;
-import com.mycompany.backend.appointmentservlet.HasActiveConsultationSerialisation;
 import com.mycompany.backend.appointmentservlet.PredictionsClientAction;
 import com.mycompany.backend.appointmentservlet.PredictionsClientSerialisation;
 import com.mycompany.backend.appointmentservlet.StartConsultationAction;
 import com.mycompany.backend.appointmentservlet.StartConsultationSerialisation;
 import com.mycompany.backend.appointmentservlet.EndConsultationAction;
 import com.mycompany.backend.appointmentservlet.EndConsultationSerialisation;
+import com.mycompany.backend.appointmentservlet.SetCommentaryAction;
+import com.mycompany.backend.appointmentservlet.SetCommentarySerialisation;
 import com.mycompany.backend.authentificationservlet.IsConnectedAction;
 import com.mycompany.backend.authentificationservlet.IsConnectedSerialisation;
 import com.mycompany.backend.authentificationservlet.LogoutAction;
@@ -178,10 +180,10 @@ public class ActionServlet extends HttpServlet {
                 action = new IsConnectedAction();
                 serialisation = new IsConnectedSerialisation();
                 break;
-            case "hasActiveConsultation":
-                System.out.println("Call hasActiveConsultation action");
-                action = new HasActiveConsultationAction();
-                serialisation = new HasActiveConsultationSerialisation();
+            case "currentSessionState":
+                System.out.println("Call currentSessionState action");
+                action = new CurrentSessionStateAction();
+                serialisation = new CurrentSessionStateSerialisation();
                 break;
             case "startConsultation":
                 System.out.println("Call startConsultation action");
@@ -192,6 +194,11 @@ public class ActionServlet extends HttpServlet {
                 System.out.println("Call endConsultation action");
                 action = new EndConsultationAction();
                 serialisation = new EndConsultationSerialisation();
+                break;
+            case "setCommentary":
+                System.out.println("Call setCommentary action");
+                action = new SetCommentaryAction();
+                serialisation = new SetCommentarySerialisation();
                 break;
             case "getClientOwnHistory":
                 System.out.println("Call startConsultation action");

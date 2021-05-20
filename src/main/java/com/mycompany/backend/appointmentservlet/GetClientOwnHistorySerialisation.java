@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mycompany.backend.Serialisation;
-import com.mycompany.td2.dasi.metier.modele.Consultation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

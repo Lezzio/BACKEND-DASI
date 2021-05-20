@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author aguigal
  */
-public class HasActiveConsultationSerialisation extends Serialisation {
+public class CurrentSessionStateSerialisation extends Serialisation {
 
     private final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
@@ -31,13 +30,16 @@ public class HasActiveConsultationSerialisation extends Serialisation {
         PrintWriter out = response.getWriter();
         // Lecture des attributs de la requête (stockés par action)
         Consultation appointment = (Consultation) request.getAttribute("consultation");
+        Consultation endedAppointment = (Consultation) request.getAttribute("endedConsultation");
 
         JsonObject container = new JsonObject();
         
         Boolean activeConsultation = appointment != null;
+        Boolean endedAppointmentState = endedAppointment != null;
         
         // Ajout de propriétés au conteneur JSON
-        container.addProperty("hasActiveConsultation", activeConsultation);    
+        container.addProperty("hasActiveConsultation", activeConsultation); //State meaning there's an active consultation to be treated
+        container.addProperty("lastConsultationEnded", endedAppointmentState); //State meaning the consultation is awaiting a commentary
 
         // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         gson.toJson(container, out);

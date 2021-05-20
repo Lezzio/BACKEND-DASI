@@ -5,10 +5,9 @@
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/statsservlet/TopFiveMediumSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/entityservlet/GetClientSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation.java
-/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/HasActiveConsultationAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/AskConsultationSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/AskConsultationAction.java
-/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/HasActiveConsultationSerialisation.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/CurrentSessionStateAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/GetClientHistoryAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/GetClientOwnHistoryAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationSerialisation.java
@@ -47,4 +46,5 @@
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/SignupClientAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/PredictionsClientAction.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/IsConnectedSerialisation.java
+/Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/appointmentservlet/CurrentSessionStateSerialisation.java
 /Users/aguigal/NetBeansProjects/mavenproject1/src/main/java/com/mycompany/backend/authentificationservlet/LoginClientSerialisation2.java

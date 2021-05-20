@@ -30,6 +30,8 @@ public class EndConsultationAction extends Action {
         Employee employee = entityService.searchEmployeeById(employeeId);
         Consultation consultation = appointmentService.getEmployeeActiveConsultation(employee);
         System.out.println("Consultation end = " + consultation);
+        session.setAttribute("endedConsultation", consultation);
+        
         appointmentService.endConsultation(employee, consultation);
         request.setAttribute("consultation", consultation);
     }

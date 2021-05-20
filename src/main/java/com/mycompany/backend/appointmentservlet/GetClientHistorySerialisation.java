@@ -34,7 +34,7 @@ public class GetClientHistorySerialisation extends Serialisation{
         List<String> mediumNames = (List<String>) request.getAttribute("MediumsNames");
         
         int i = 0;
-        for(Consultation consultation : consultations){
+        for(Consultation consultation : consultations) {
             JsonObject element = new JsonObject();
             element.addProperty("endDate", consultation.getEndDate().toString());
             element.addProperty("mediumName", mediumNames.get(i));
