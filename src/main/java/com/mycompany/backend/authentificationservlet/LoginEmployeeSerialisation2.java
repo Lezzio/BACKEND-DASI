@@ -22,15 +22,15 @@ public class LoginEmployeeSerialisation2 extends Serialisation{
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Employee employee = (Employee) request.getAttribute("employee");
+        System.out.println("Employee Serialisation : " + employee);
         JsonObject container = new JsonObject();
 
         if (employee != null) {
-            container.addProperty("connexino", "true");   
-            container.addProperty("employee", gson.toJson(employee));
+            container.addProperty("connexion", true);   
         } else {
-            container.addProperty("connexino", "false");   
-            container.addProperty("employee", gson.toJson(null));
+            container.addProperty("connexion", false);   
         }
+        container.addProperty("employee", gson.toJson(employee));
 
         // Formatage de la structure de données JSON => Ecriture dur le flux de sortie de la réponse
         PrintWriter out = response.getWriter();

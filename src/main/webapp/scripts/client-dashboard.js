@@ -5,14 +5,10 @@ $(document).ready(function () {
     displayMediums();
 });
 
-function getId() {
-
-}
-
 function displayInfos() {
     // Appel AJAX
     $.ajax({
-        url: 'http://localhost:8080/DASI/ActionServlet',
+        url: 'localhost:8080/DASI/ActionServlet',
         method: 'POST',
         data: {
             todo: 'getClient'
@@ -21,40 +17,20 @@ function displayInfos() {
     })
         .done(function (response) { // Fonction appelée en cas d'appel AJAX réussi
             console.log('Response', response); // LOG dans Console Javascript
-            if (response.client !== "null") {
-                console.log(response.client)
-                var lastName = response.client.lastName;
-                var firstName = response.client.firstName;
-                var mail = response.client.mail;
-                var birthDate = response.client.birthDate;
-                var address = response.client.address;
-                var zipCode = response.client.zipCode;
-                var phone = response.client.phone;
-                var city = response.client.city;
-                var astralProfile = response.client.astralProfile;
-                var chineeseSign = astralProfile.chineeseSign;
-                var color = astralProfile.color;
-                var totem = astralProfile.totemAnimal;
-                var zodiac = astralProfile.zodiacSign;
+            document.getElementById('first-name').setAttribute('value', response.firstName);
+            document.getElementById('last-name').setAttribute('value', response.lastName);
+            document.getElementById('birthdate').setAttribute('value', response.birthDate);
+            document.getElementById('address').setAttribute('value', response.address);
+            document.getElementById('postal-code').setAttribute('value', response.zipCode);
+            document.getElementById('city').setAttribute('value', response.city);
+            document.getElementById('contact-phone').setAttribute('value', response.phone);
+            document.getElementById('contact-mail').setAttribute('value', response.mail);
 
-                document.getElementById('first-name').setAttribute('value', firstName);
-                document.getElementById('last-name').setAttribute('value', lastName);
-                document.getElementById('birthdate').setAttribute('value', birthDate);
-                document.getElementById('address').setAttribute('value', address);
-                document.getElementById('postal-code').setAttribute('value', zipCode);
-                document.getElementById('city').setAttribute('value', city);
-                document.getElementById('contact-phone').setAttribute('value', phone);
-                document.getElementById('contact-mail').setAttribute('value', mail);
-
-                $('#zodiac').text(zodiac);
-                $('#animal').text(totem);
-                $('#color').text(color);
-                $('#astro').text(chineeseSign);
-
-            } else {
-                window.alert("Les informations n'ont pas pu être récupérées");
-                $('#notification').html("Erreur lors de la recherche des informations"); // Message pour le paragraphe de notification
-            }
+            var astralProfile = response.astralProfile;
+            $('#zodiac').text(astralProfile.zodiacSign);
+            $('#animal').text(astralProfile.totemAnimal);
+            $('#color').text(astralProfile.color);
+            $('#astro').text(astralProfile.chineeseSign);
         })
         .fail(function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
             console.log('Error', error); // LOG dans Console Javascript
@@ -125,14 +101,13 @@ function displayMediums() {
 
 function handleMediumClick(id) {
     //First we ask the consultation in ajax
-    console.log("ClientID = " + clientId + " MediumId = " + id)
+    console.log("MediumId = " + id)
 
     $.ajax({
         url: 'http://localhost:8080/DASI/ActionServlet',
         method: 'POST',
         data: {
             todo: 'askAppointment',
-            client: clientId,
             medium: id
         },
         dataType: 'json'

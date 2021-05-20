@@ -27,6 +27,7 @@ public class LoginEmployeeSerialisation extends Serialisation{
         JsonObject container = new JsonObject();
         
         Boolean connexionStatus = employee != null;
+        System.out.println("Employee Serialisation : " + employee);
         
         container.addProperty("connexion", connexionStatus);
         container.addProperty("userType", "employee");

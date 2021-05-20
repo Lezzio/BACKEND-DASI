@@ -24,8 +24,11 @@ public class LoginEmployeeAction extends Action{
         request.setAttribute("employee", employee);
         
         //Update the session employee id
-        HttpSession session = request.getSession();
-        session.setAttribute("employeeId", employee.getId());
+        if(employee != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("employeeId", employee.getId());
+        }
+        
     }
     
 }

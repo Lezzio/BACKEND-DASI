@@ -4,6 +4,8 @@ console.log("Hey!")
 let switchSelection = "client"
 
 $(document).ready(function () {
+    //TODO : check if isConnected function works
+    //isConnected();
     $("#switch-selector-client").click(switchClient)
     $("#switch-selector-employee").click(switchEmployee)
     $("#login-button").click(loginButton)
@@ -21,7 +23,35 @@ function switchEmployee() {
     target.addClass("right");
     target.removeClass("left");
 }
-
+function isConnected(){
+    $.ajax({
+        url: 'http://localhost:8080/DASI/ActionServlet',
+        method: 'POST',
+        data: {
+            todo: 'isConnected'
+        },
+        dataType: 'json'
+    })
+        .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+            console.log('Response',response); // LOG dans Console Javascript
+            if (response.isConnected) {
+                if(response.userType === "client"){
+                    document.location.href = "./client-dashboard.html"
+                } else if(response.userType === "employee"){
+                    document.location.href = "./employee-dashboard.html";
+                } else{
+                    window.alert("Neither employee or client")
+                }
+            }
+            else {
+                window.alert("User not connected")
+            }
+        })
+        .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+            console.log('Error',error); // LOG dans Console Javascript
+            alert("Erreur lors de l'appel AJAX");
+        })
+}
 function loginButton() {
     console.log("clic sur le bouton de connexion"); // LOG dans Console Javascript
     $('#notification').html("Connexion..."); // Message pour le paragraphe de notification
@@ -45,14 +75,14 @@ function loginButton() {
         dataType: 'json'
     })
         .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
-            console.log('Response',response); // LOG dans Console Javascript
+            console.log('Response', response); // LOG dans Console Javascript
             if (response.connexion) {
                 if(response.userType === "employee"){
                     console.log("Employee");
                     window.alert("Login successful");
                     document.location.href = "./employee-dashboard.html";
                     $('#notification').html("Connexion Employee OK : " + id + " " + firstName + " " + lastName + " " + mail);  // Message pour le paragraphe de notification
-                }else if (response.userType === "client"){
+                } else if (response.userType === "client"){
                     console.log("Client");
                     window.alert("Login successful");
                     document.location.href = "./client-dashboard.html"

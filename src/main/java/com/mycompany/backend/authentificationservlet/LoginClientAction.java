@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * @author Aurélien
  */
 public class LoginClientAction extends Action {
-    AuthentificationService authentificationService = new AuthentificationService();
+    private final AuthentificationService authentificationService = new AuthentificationService();
     @Override
     public void executer(HttpServletRequest request) {
         String login = request.getParameter("login");
@@ -27,8 +27,8 @@ public class LoginClientAction extends Action {
         
         //Update the session client id
         if(client != null) {
-        HttpSession session = request.getSession();
-        session.setAttribute("clientId", client.getId());
+            HttpSession session = request.getSession();
+            session.setAttribute("clientId", client.getId());
         }
     }
 }

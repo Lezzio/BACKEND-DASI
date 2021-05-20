@@ -84,12 +84,12 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        //response.addHeader("Access-Control-Allow-Origin", "*");
 
         HttpSession session = request.getSession();
         session.getAttribute("clientId");
-        session.setAttribute("clientId", 1L);
-        session.setAttribute("employeeId", 2L);
+        //session.setAttribute("clientId", 1451L);
+        //session.setAttribute("employeeId", 2L);
 
         String todo = request.getParameter("todo");
 
@@ -97,17 +97,19 @@ public class ActionServlet extends HttpServlet {
 
         Action action = null;
         Serialisation serialisation = null;
-        
+        while (todo == null){}
         switch (todo) {
             case "signIn":
                 System.out.println("Call signIn action");
                 String userType = request.getParameter("userType");
                 switch(userType) {
                     case "client":
+                         System.out.println("Call signInClient action");
                         action = new LoginClientAction();
                         serialisation = new LoginClientSerialisation();
                         break;
                     case "employee":
+                         System.out.println("Call signInEmployee action");
                         action = new LoginEmployeeAction();
                         serialisation = new LoginEmployeeSerialisation();
                         break;
@@ -214,7 +216,9 @@ public class ActionServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
+        
         JpaUtil.init();
+        /*
         Client client1 = new Client("Lovelace", "Ada", "Mme", "ada.lovelace@insa-lyon.fr", "ada1", new Date(), "0668574620", "12 rue Poussin", "Davezieux" ,"07430");
         authentificationService.signupClient(client1);
         Employee employee1 = new Employee(Gender.MALE,"leo", "dupont", "leo@leo.fr","mdp","0505050505");
@@ -245,7 +249,7 @@ public class ActionServlet extends HttpServlet {
         JpaUtil.validerTransaction();
         } catch(Exception e) {
             e.printStackTrace();
-        }
+        }*/
         
     }
 
