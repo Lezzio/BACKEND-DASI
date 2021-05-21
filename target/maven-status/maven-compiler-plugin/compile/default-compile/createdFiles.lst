@@ -17,7 +17,6 @@ com/mycompany/backend/entityservlet/GetEmployeeAction.class
 com/mycompany/backend/Serialisation.class
 com/mycompany/backend/appointmentservlet/GetClientOwnHistorySerialisation.class
 com/mycompany/backend/appointmentservlet/SetCommentarySerialisation.class
-com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumSerialisation.class
 com/mycompany/backend/authentificationservlet/LoginEmployeeSerialisation2.class
 com/mycompany/backend/appointmentservlet/EndConsultationAction.class
 com/mycompany/backend/authentificationservlet/SignupClientSerialisation2.class
@@ -29,6 +28,7 @@ com/mycompany/backend/appointmentservlet/StartConsultationSerialisation.class
 com/mycompany/backend/appointmentservlet/CurrentSessionStateSerialisation.class
 com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationAction.class
 com/mycompany/backend/statsservlet/TopFiveMediumSerialisation.class
+com/mycompany/backend/statsservlet/ListConsultationCountByMediumSerialisation.class
 com/mycompany/backend/appointmentservlet/EmployeeActiveConsultationSerialisation.class
 com/mycompany/backend/statsservlet/TopFiveMediumAction$1.class
 com/mycompany/backend/appointmentservlet/GetClientHistorySerialisation.class
@@ -39,11 +39,11 @@ com/mycompany/backend/authentificationservlet/SignupClientAction.class
 com/mycompany/backend/ActionServlet.class
 com/mycompany/backend/authentificationservlet/LoginEmployeeAction.class
 com/mycompany/backend/authentificationservlet/IsConnectedSerialisation.class
+com/mycompany/backend/statsservlet/ListConsultationCountByMediumAction.class
 com/mycompany/backend/entityservlet/GetEmployeeSerialisation.class
 com/mycompany/backend/authentificationservlet/LoginClientSerialisation2.class
 com/mycompany/backend/authentificationservlet/LogoutAction.class
 com/mycompany/backend/authentificationservlet/SignupClientSerialisation.class
 com/mycompany/backend/entityservlet/GetClientAction.class
 com/mycompany/backend/entityservlet/GetEmployeeSerialisation2.class
-com/mycompany/backend/statsservlet/ListerNombreConsultationParMediumAction.class
 com/mycompany/backend/authentificationservlet/LoginClientAction.class
