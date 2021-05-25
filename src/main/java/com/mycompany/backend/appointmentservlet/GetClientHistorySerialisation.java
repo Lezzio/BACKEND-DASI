@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Aurélien
  */
 public class GetClientHistorySerialisation extends Serialisation{
+    
     private final Gson gson = new Gson();
 
     @Override

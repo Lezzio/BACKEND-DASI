@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class PredictionsClientSerialisation extends Serialisation {
 
-    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
     
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {

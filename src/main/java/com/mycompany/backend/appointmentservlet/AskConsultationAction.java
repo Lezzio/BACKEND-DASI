@@ -6,40 +6,43 @@
 package com.mycompany.backend.appointmentservlet;
 import com.mycompany.backend.Action;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-/**
- *
- * @author victo
- */
+
 public class AskConsultationAction extends Action {
     
     private final AppointmentService appointmentService = new AppointmentService();
+    private final EntityService entityService = new EntityService();       
         
     @Override
-    public void executer(HttpServletRequest request){
+    public void executer(HttpServletRequest request) {
         String mediumParam = request.getParameter("medium");
         Long mediumId = Long.parseLong(mediumParam);
         
         HttpSession session = request.getSession();
         Long clientId = (Long) session.getAttribute("clientId");
-       
         
-        EntityService entityService = new EntityService();        
-        
-        // La vérification de la disponibilité de l'employé se fait dans le service
         Client client = entityService.searchClientById(clientId);
         Medium medium = entityService.searchMediumById(mediumId);
         
         System.out.println("Client = " + client + " id = " + clientId.toString());
         System.out.println("Medium = " + medium + " id = " + mediumId.toString());
         
-        Long idConsultation = appointmentService.askConsultation(client, medium);
+        Consultation activeConsultation = appointmentService.getClientActiveConsultation(client);
         
-        request.setAttribute("consultation", idConsultation);
+        if(activeConsultation != null) {
+            //Checking if the medium and client are available is done in the service
+            Long idConsultation = appointmentService.askConsultation(client, medium);
+            request.setAttribute("consultation", idConsultation);
+            request.setAttribute("alreadyBooked", false);
+        } else {
+            request.setAttribute("alreadyBooked", true);
+        }
+        
     }
     
 }

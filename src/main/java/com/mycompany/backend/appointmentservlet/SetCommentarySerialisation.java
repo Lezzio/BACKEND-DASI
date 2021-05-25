@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SetCommentarySerialisation extends Serialisation {
     
-    Gson gson = new GsonBuilder()
+    private final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .serializeNulls()
             .create();

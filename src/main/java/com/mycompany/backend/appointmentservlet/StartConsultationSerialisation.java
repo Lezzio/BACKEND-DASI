@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class StartConsultationSerialisation extends Serialisation {
 
     private final Gson gson = new Gson();
+    
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();

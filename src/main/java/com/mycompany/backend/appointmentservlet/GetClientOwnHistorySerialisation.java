@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Aurélien
  */
 public class GetClientOwnHistorySerialisation extends Serialisation{
+    
     private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     @Override
