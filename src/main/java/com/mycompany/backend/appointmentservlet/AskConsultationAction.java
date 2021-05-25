@@ -34,7 +34,11 @@ public class AskConsultationAction extends Action {
         
         Consultation activeConsultation = appointmentService.getClientActiveConsultation(client);
         
-        if(activeConsultation != null) {
+        //System.out.println("Active consultation = " + activeConsultation);
+        //System.out.println("Active consultation = " + activeConsultation.getEmployee().getFirstName() + activeConsultation.getEmployee().getLastName());
+        //System.out.println("ACTIVE CONSULTATION NOT NULL = " + activeConsultation != null);
+        
+        if(activeConsultation == null) {
             //Checking if the medium and client are available is done in the service
             Long idConsultation = appointmentService.askConsultation(client, medium);
             request.setAttribute("consultation", idConsultation);
