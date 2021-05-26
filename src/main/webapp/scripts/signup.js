@@ -4,7 +4,6 @@ $(document).ready(function () {
 
 function signupButton() {
     console.log("clic sur le bouton d'inscription"); // LOG dans Console Javascript
-    $('#notification').html("Inscription..."); // Message pour le paragraphe de notification
 
     // Récupération de la valeur des champs du formulaire
 
@@ -20,7 +19,7 @@ function signupButton() {
     var password = $('#password').val();
 
     if (firstName === "" || lastName === "" || birthdate === "" || civility === "" || address === "" || postal === "" || city === "" || mail === "" || password === "" || zipCode === "") {
-        console.log("Remplissez tous les champs svp");
+        window.alert("Remplissez tous les champs svp");
         return;
     }
 
